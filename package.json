@@ -1,5 +1,14 @@
 {
     "name": "telegrino",
     "private": true,
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "scripts": {
+        "b": "pnpm --filter @telegrino/back",
+        "f": "pnpm --filter @telegrino/front",
+        "dev": "pnpm -r --parallel dev",
+        "types": "concurrently \"pnpm b types\" \"pnpm f types\""
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2"
+    }
 }
