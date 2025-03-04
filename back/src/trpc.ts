@@ -11,7 +11,7 @@ const categories = [
 const trpc = initTRPC.create()
 
 export const trpcRouter = trpc.router({
-  getIdeas: trpc.procedure.query(() => {
+  getCategories: trpc.procedure.query(() => {
     return { categories }
   }),
 })

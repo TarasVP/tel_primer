@@ -18,5 +18,5 @@ expressApp.use(
 )
 
 expressApp.listen(3000, () => {
-  console.info("Listen ah http://localhost:3000");
+  console.info("Listen ah http://localhost:3000/trpc/getCategories");
 });
