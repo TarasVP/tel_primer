@@ -1,5 +1,5 @@
 {
-  "name": "primer",
+  "name": "@telegrino/back",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@trpc/server": "^10.45.2",
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
