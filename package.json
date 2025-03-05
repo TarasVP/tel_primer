@@ -9,6 +9,10 @@
         "types": "concurrently \"pnpm b types\" \"pnpm f types\""
     },
     "devDependencies": {
-        "concurrently": "^9.1.2"
+        "concurrently": "^9.1.2",
+        "eslint": "^9.21.0",
+        "eslint-config-love": "^119.0.0",
+        "eslint-config-prettier": "^10.0.2",
+        "eslint-config-react-app": "^7.0.1"
     }
 }
