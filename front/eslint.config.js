@@ -1,28 +1,27 @@
-import reactApp from 'eslint-config-react-app';
-import path from 'path';
-import eslint from '@eslint/js';
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import pluginReact from "eslint-plugin-react";
 
+
+/** @type {import('eslint').Linter.Config[]} */
 export default [
-  eslint.configs.recommended,
-  reactApp,
+  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
+  {languageOptions: { globals: globals.browser }},
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
   {
-    // Настройки из вашего .eslintrc.yml
-    languageOptions: {
-      parserOptions: {
-        project: './tsconfig.json',
-      },
-    },
     rules: {
-      // Правила из вашего .eslintrc.yml
-    },
-  },
-  {
-    // Переопределения для vite.config.ts
-    files: ['vite.config.ts'],
-    languageOptions: {
-      parserOptions: {
-        project: './tsconfig.node.json',
-      },
-    },
-  },
+      "react/react-in-jsx-scope": "off",
+      "no-console": ["error", { "allow": ["warn", "error"] }],
+      "no-irregular-whitespace": [
+        "error",
+        {
+          "skipTemplates": true,
+          "skipStrings": true
+        }
+      ]
+    }
+  }
 ];
