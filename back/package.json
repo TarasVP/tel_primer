@@ -8,7 +8,7 @@
     "start": "node ./dist/index.js",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
-    "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
+    "prettify": "prettier --loglevel-warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
   },
   "dependencies": {
     "@trpc/server": "^10.45.2",
@@ -21,6 +21,7 @@
     "@types/express": "^5.0.0",
     "eslint": "^9.21.0",
     "globals": "^15.15.0",
+    "prettier": "3.5.3",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2",

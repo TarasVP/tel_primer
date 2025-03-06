@@ -1,11 +1,11 @@
 import { initTRPC } from '@trpc/server'
 
 const categories = [
-  { "id": "1", name: "Наука"},
-  { "id": "2", name: "Спорт"},
-  { "id": "3", name: "Политика"},
-  { "id": "4", name: "Искусство"},
-  { "id": "5", name: "Разное"},
+  { id: '1', name: 'Наука' },
+  { id: '2', name: 'Спорт' },
+  { id: '3', name: 'Политика' },
+  { id: '4', name: 'Искусство' },
+  { id: '5', name: 'Разное' },
 ]
 
 const trpc = initTRPC.create()
