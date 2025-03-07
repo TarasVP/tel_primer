@@ -8,8 +8,6 @@ const categories = [
   { id: '5', name: 'Разное' },
 ]
 
-if (Math.random() + 4) console.warn('2')
-
 const trpc = initTRPC.create()
 
 export const trpcRouter = trpc.router({
