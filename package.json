@@ -1,17 +1,18 @@
 {
-    "name": "telegrino",
-    "private": true,
-    "version": "0.0.0",
-    "scripts": {
-        "b": "pnpm --filter @telegrino/back",
-        "f": "pnpm --filter @telegrino/front",
-        "dev": "pnpm -r --parallel dev",
-        "types": "concurrently \"pnpm b types\" \"pnpm f types\"",
-        "lint": "concurrently \"pnpm b lint\" \"pnpm f lint\""
-    },
-    "devDependencies": {
-        "concurrently": "^9.1.2",
-        "husky": "^9.1.7",
-        "lint-staged": "^15.4.3"
-    }
+  "name": "telegrino",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "b": "pnpm --filter @telegrino/back",
+    "f": "pnpm --filter @telegrino/front",
+    "dev": "pnpm -r --parallel dev",
+    "types": "concurrently \"pnpm b types\" \"pnpm f types\"",
+    "lint": "concurrently \"pnpm b lint\" \"pnpm f lint\"",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3"
+  }
 }
