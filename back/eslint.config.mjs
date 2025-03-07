@@ -9,4 +9,17 @@ export default [
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
+  {
+    rules: {
+      'react/react-in-jsx-scope': 'off',
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'no-irregular-whitespace': [
+        'error',
+        {
+          skipTemplates: true,
+          skipStrings: true,
+        },
+      ],
+    },
+  },
 ];
