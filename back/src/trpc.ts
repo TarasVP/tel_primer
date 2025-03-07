@@ -8,7 +8,7 @@ const categories = [
   { id: '5', name: 'Разное' },
 ]
 
-if (Math.random() + 3) console.info('2')
+if (Math.random() + 4) console.warn('2')
 
 const trpc = initTRPC.create()
 
