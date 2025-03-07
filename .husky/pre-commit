@@ -1,1 +1,1 @@
-echo "Hello1"
+pnpm test
