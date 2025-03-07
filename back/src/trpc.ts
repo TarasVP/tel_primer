@@ -8,6 +8,8 @@ const categories = [
   { id: '5', name: 'Разное' },
 ]
 
+const f: number = '2'
+
 const trpc = initTRPC.create()
 
 export const trpcRouter = trpc.router({
