@@ -1,4 +1,4 @@
-import { trpc } from '../lib/trps'
+import { trpc } from "../lib/trps"
 
 export const CategoriesPage = () => {
   const { data, error, isLoading, isFetching, isError } = trpc.getCategories.useQuery()
