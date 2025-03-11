@@ -1,2 +1,9 @@
+const getRouteParams = <T extends Record<string, boolean>>(object: T) => {
+  return Object.keys(object).reduce((acc, key) => ({ ...acc, [key]: `:${key}` }), {}) as Record<keyof T, string>
+}
+
 export const getAllCategoriesRoute = () => '/'
-export const getSubCategoriesRoute = ({ categoryId }: { categoryId: string }) => `/ideas/${categoryId}`
+
+export const subCategoriesRouteParams = getRouteParams({ categoryId: true })
+export type SubCategoriesRouteParams = typeof subCategoriesRouteParams
+export const getSubCategoriesRoute = ({ categoryId }: SubCategoriesRouteParams) => `/ideas/${categoryId}`

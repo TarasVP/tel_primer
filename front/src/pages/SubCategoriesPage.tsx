@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
+import { SubCategoriesRouteParams } from '../lib/routes'
 
 export const SubCategoriesPage = () => {
-  const { categoryId } = useParams() as { categoryId: string }
+  const { categoryId } = useParams() as SubCategoriesRouteParams
 
   return (
     <div>
