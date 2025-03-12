@@ -1,5 +1,6 @@
 import { initTRPC } from '@trpc/server'
 import _ from 'lodash'
+import { z } from 'zod'
 
 /* const categories = [
   { id: '1', name: 'Наука' },
@@ -21,6 +22,16 @@ export const trpcRouter = trpc.router({
   getCategories: trpc.procedure.query(() => {
     return { categories: categories.map((category) => _.pick(category, ['id', 'name'])) }
   }),
+  getSubCategories: trpc.procedure
+    .input(
+      z.object({
+        categoryId: z.string(),
+      })
+    )
+    .query(({ input }) => {
+      const category = categories.find((category) => category.id === input.categoryId)
+      return { category: category || null }
+    }),
 })
 
 export type TrpcRouter = typeof trpcRouter
