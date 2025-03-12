@@ -5,7 +5,7 @@ export const Layout = () => {
   return (
     <div>
       <p>
-        <b>Category</b>
+        <b className="logo">Category</b>
       </p>
       <ul>
         <li>

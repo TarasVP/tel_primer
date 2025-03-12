@@ -4,6 +4,7 @@ import { CategoriesPage } from './pages/CategoriesPage'
 import { SubCategoriesPage } from './pages/SubCategoriesPage'
 import { getAllCategoriesRoute, getSubCategoriesRoute, subCategoriesRouteParams } from './lib/routes'
 import { Layout } from './components/Layout'
+import './styles/global.scss'
 
 export const App = () => {
   return (
