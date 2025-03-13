@@ -19,13 +19,17 @@ export const CategoriesPage = () => {
   return (
     <div>
       <h1 className={css.title}>Categories</h1>
-      {categories.map((category) => (
-        <div key={category.id}>
-          <h2>
-            <Link to={getSubCategoriesRoute({ categoryId: category.id })}>{category.name}</Link>
-          </h2>
-        </div>
-      ))}
+      <div className={css.categories}>
+        {categories.map((category) => (
+          <div className={css.category} key={category.id}>
+            <h2 className={css.categoryName}>
+              <Link className={css.categoryLink} to={getSubCategoriesRoute({ categoryId: category.id })}>
+                {category.name}
+              </Link>
+            </h2>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

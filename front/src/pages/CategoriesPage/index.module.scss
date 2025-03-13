@@ -5,25 +5,21 @@
   @include mixins.h1;
 }
 
-.ideas {
-  .idea {
+.categories {
+  .category {
     padding: 20px;
     border: 1px solid vars.$black;
     border-radius: 10px;
-    & + .idea {
+    & + .category {
       margin-top: 20px;
     }
 
-    .ideaName {
+    .categoryName {
       @include mixins.h2;
 
-      .ideaLink {
+      .categoryLink {
         @include mixins.link;
       }
-    }
-
-    .ideaDescription {
-      font-size: 18px;
     }
   }
 }
