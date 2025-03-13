@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
-import { SubCategoriesRouteParams } from '../lib/routes'
-import { trpc } from '../lib/trps'
+import { SubCategoriesRouteParams } from '../../lib/routes'
+import { trpc } from '../../lib/trps'
 
 export const SubCategoriesPage = () => {
   const { categoryId } = useParams() as SubCategoriesRouteParams

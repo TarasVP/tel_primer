@@ -1,0 +1,29 @@
+@use '../../styles/_vars.scss' as vars;
+@use '../../styles/_mixins.scss' as mixins;
+
+.title {
+  @include mixins.h1;
+}
+
+.ideas {
+  .idea {
+    padding: 20px;
+    border: 1px solid vars.$black;
+    border-radius: 10px;
+    & + .idea {
+      margin-top: 20px;
+    }
+
+    .ideaName {
+      @include mixins.h2;
+
+      .ideaLink {
+        @include mixins.link;
+      }
+    }
+
+    .ideaDescription {
+      font-size: 18px;
+    }
+  }
+}
