@@ -2,9 +2,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { TrpcProvider } from './lib/trps'
 import { CategoriesPage } from './pages/CategoriesPage/index'
 import { SubCategoriesPage } from './pages/SubCategoriesPage/index'
-import { getAllCategoriesRoute, getSubCategoriesRoute, subCategoriesRouteParams } from './lib/routes'
+import * as routes from './lib/routes'
 import { Layout } from './components/Layout'
 import './styles/global.scss'
+import { NewCategoryPage } from './pages/NewCategoryPage'
 
 export const App = () => {
   return (
@@ -12,8 +13,12 @@ export const App = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path={getAllCategoriesRoute()} element={<CategoriesPage />} />
-            <Route path={getSubCategoriesRoute(subCategoriesRouteParams)} element={<SubCategoriesPage />} />
+            <Route path={routes.getAllCategoriesRoute()} element={<CategoriesPage />} />
+            <Route
+              path={routes.getSubCategoriesRoute(routes.subCategoriesRouteParams)}
+              element={<SubCategoriesPage />}
+            />
+            <Route path={routes.getNewCategoryRoute()} element={<NewCategoryPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
