@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { trpc } from '../../lib/trps'
 import { getSubCategoriesRoute } from '../../lib/routes'
 import css from './index.module.scss'
+import { Segment } from '../../components/Segment'
 
 export const CategoriesPage = () => {
   const { data, error, isLoading, isFetching, isError } = trpc.getCategories.useQuery()
@@ -17,19 +18,22 @@ export const CategoriesPage = () => {
   const categories = data.categories
 
   return (
-    <div>
-      <h1 className={css.title}>Categories</h1>
+    <Segment title="Categories">
       <div className={css.categories}>
         {categories.map((category) => (
           <div className={css.category} key={category.id}>
-            <h2 className={css.categoryName}>
-              <Link className={css.categoryLink} to={getSubCategoriesRoute({ categoryId: category.id })}>
-                {category.name}
-              </Link>
-            </h2>
+            <Segment
+              size={2}
+              title={
+                <Link className={css.categoryLink} to={getSubCategoriesRoute({ categoryId: category.id })}>
+                  {category.name}
+                </Link>
+              }
+              description={category.description}
+            ></Segment>
           </div>
         ))}
       </div>
-    </div>
+    </Segment>
   )
 }

@@ -1,10 +1,6 @@
 @use '../../styles/_vars.scss' as vars;
 @use '../../styles/_mixins.scss' as mixins;
 
-.title {
-  @include mixins.h1;
-}
-
 .categories {
   .category {
     padding: 20px;
@@ -14,12 +10,8 @@
       margin-top: 20px;
     }
 
-    .categoryName {
-      @include mixins.h2;
-
-      .categoryLink {
-        @include mixins.link;
-      }
+    .categoryLink {
+      @include mixins.link;
     }
   }
 }

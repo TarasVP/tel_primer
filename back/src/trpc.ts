@@ -13,6 +13,7 @@ import { z } from 'zod'
 const categories = _.times(100, (i) => ({
   id: `${i}`,
   name: `category ${i}`,
+  description: `description ${i}`,
   text: _.times(100, (j) => `<p>Text paragraph ${j}...</p>`).join(''),
 }))
 
@@ -20,7 +21,7 @@ const trpc = initTRPC.create()
 
 export const trpcRouter = trpc.router({
   getCategories: trpc.procedure.query(() => {
-    return { categories: categories.map((category) => _.pick(category, ['id', 'name'])) }
+    return { categories: categories.map((category) => _.pick(category, ['id', 'name', 'description'])) }
   }),
   getSubCategories: trpc.procedure
     .input(

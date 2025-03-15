@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { SubCategoriesRouteParams } from '../../lib/routes'
 import { trpc } from '../../lib/trps'
 import css from './index.module.scss'
+import { Segment } from '../../components/Segment'
 
 export const SubCategoriesPage = () => {
   const { categoryId } = useParams() as SubCategoriesRouteParams
@@ -23,9 +24,8 @@ export const SubCategoriesPage = () => {
   }
 
   return (
-    <div>
-      <h1 className={css.title}>{category.name}</h1>
+    <Segment title={category.name} description={category.description}>
       <div className={css.text} dangerouslySetInnerHTML={{ __html: category.text }}></div>
-    </div>
+    </Segment>
   )
 }
