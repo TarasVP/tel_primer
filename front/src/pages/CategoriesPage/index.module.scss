@@ -1,11 +1,12 @@
-@use '../../styles/_vars.scss' as vars;
-@use '../../styles/_mixins.scss' as mixins;
+@use '../../styles/vars' as vars;
+@use '../../styles/mixins' as mixins;
 
 .categories {
   .category {
     padding: 20px;
     border: 1px solid vars.$black;
     border-radius: 10px;
+
     & + .category {
       margin-top: 20px;
     }
