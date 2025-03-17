@@ -21,6 +21,7 @@ export default [
           skipStrings: true,
         },
       ],
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ]

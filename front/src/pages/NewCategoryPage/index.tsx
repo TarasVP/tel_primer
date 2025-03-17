@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Segment } from '../../components/Segment'
 import { Input } from '../../components/Input'
+import { Textarea } from '../../components/Textarea'
 
 export const NewCategoryPage = () => {
   const [state, setState] = useState({
@@ -21,19 +22,7 @@ export const NewCategoryPage = () => {
         <Input name="name" label="Name" state={state} setState={setState} />
         <Input name="nick" label="Nick" state={state} setState={setState} />
         <Input name="description" label="Description" state={state} setState={setState} />
-
-        <div style={{ marginBottom: 10 }}>
-          <label htmlFor="text">Text</label>
-          <br />
-          <textarea
-            onChange={(e) => {
-              setState({ ...state, text: e.target.value })
-            }}
-            value={state.text}
-            name="text"
-            id="text"
-          />
-        </div>
+        <Textarea name="text" label="Text" state={state} setState={setState} />
 
         <button type="submit">Create Idea</button>
       </form>
