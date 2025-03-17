@@ -13,7 +13,7 @@ export default [
   {
     rules: {
       'react/react-in-jsx-scope': 'off',
-      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
       'no-irregular-whitespace': [
         'error',
         {
