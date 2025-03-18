@@ -18,16 +18,16 @@ export const NewCategoryPage = () => {
       }
       if (!values.id) {
         errors.id = 'Id is required'
-      } else if (!values.id.match(/^[a-z0-9-]+$/)) {
-        errors.id = 'Id may contain only lowercase letters, numbers and dashes'
+      } else if (!values.id.match(/^[0-9]+$/)) {
+        errors.id = 'Id may contain only numbers'
       }
       if (!values.description) {
         errors.description = 'Description is required'
       }
       if (!values.text) {
         errors.text = 'Text is required'
-      } else if (values.text.length < 100) {
-        errors.text = 'Text should be at least 100 characters long'
+      } else if (values.text.length < 10) {
+        errors.text = 'Text should be at least 10 characters long'
       }
       return errors
     },
