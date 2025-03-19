@@ -1,3 +1,5 @@
+import { z } from 'zod'
+import { withZodSchema } from 'formik-validator-zod'
 import { Segment } from '../../components/Segment'
 import { Input } from '../../components/Input'
 import { Textarea } from '../../components/Textarea'
@@ -11,26 +13,17 @@ export const NewCategoryPage = () => {
       description: '',
       text: '',
     },
-    validate: (values) => {
-      const errors: Partial<typeof values> = {}
-      if (!values.name) {
-        errors.name = 'Name is required'
-      }
-      if (!values.id) {
-        errors.id = 'Id is required'
-      } else if (!values.id.match(/^[0-9]+$/)) {
-        errors.id = 'Id may contain only numbers'
-      }
-      if (!values.description) {
-        errors.description = 'Description is required'
-      }
-      if (!values.text) {
-        errors.text = 'Text is required'
-      } else if (values.text.length < 10) {
-        errors.text = 'Text should be at least 10 characters long'
-      }
-      return errors
-    },
+    validate: withZodSchema(
+      z.object({
+        name: z.string().min(1),
+        id: z
+          .string()
+          .min(1)
+          .regex(/^[0-9]+$/, 'Id may contain only numbers'),
+        description: z.string().min(1),
+        text: z.string().min(100, 'Text should be at least 10 characters long'),
+      })
+    ),
     onSubmit: (values) => {
       console.info('Submitted', values)
     },
