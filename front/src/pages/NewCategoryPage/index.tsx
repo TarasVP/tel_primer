@@ -4,8 +4,10 @@ import { Segment } from '../../components/Segment'
 import { Input } from '../../components/Input'
 import { Textarea } from '../../components/Textarea'
 import { useFormik } from 'formik'
+import { trpc } from '../../lib/trps'
 
 export const NewCategoryPage = () => {
+  const createCategory = trpc.createCategory.useMutation()
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -21,11 +23,11 @@ export const NewCategoryPage = () => {
           .min(1)
           .regex(/^[0-9]+$/, 'Id may contain only numbers'),
         description: z.string().min(1),
-        text: z.string().min(100, 'Text should be at least 10 characters long'),
+        text: z.string().min(10, 'Text should be at least 10 characters long'),
       })
     ),
-    onSubmit: (values) => {
-      console.info('Submitted', values)
+    onSubmit: async (values) => {
+      await createCategory.mutateAsync(values)
     },
   })
 

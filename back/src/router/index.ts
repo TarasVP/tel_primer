@@ -1,11 +1,13 @@
 import { trpc } from '../lib/trpc'
 // @index('./**/index.ts', f => `import { ${f.path.split('/').slice(0, -1).pop()}TrpcRoute } from '${f.path.split('/').slice(0, -1).join('/')}'`)
+import { createCategoryTrpcRoute } from './createCategory'
 import { getCategoriesTrpcRoute } from './getCategories'
 import { getSubCategoriesTrpcRoute } from './getSubCategories'
 // @endindex
 
 export const trpcRouter = trpc.router({
   // @index('./**/index.ts', f => `${f.path.split('/').slice(0, -1).pop()}: ${f.path.split('/').slice(0, -1).pop()}TrpcRoute,`)
+  createCategory: createCategoryTrpcRoute,
   getCategories: getCategoriesTrpcRoute,
   getSubCategories: getSubCategoriesTrpcRoute,
   // @endindex
