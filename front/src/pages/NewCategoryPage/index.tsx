@@ -1,10 +1,10 @@
-import { z } from 'zod'
 import { withZodSchema } from 'formik-validator-zod'
 import { Segment } from '../../components/Segment'
 import { Input } from '../../components/Input'
 import { Textarea } from '../../components/Textarea'
 import { useFormik } from 'formik'
 import { trpc } from '../../lib/trps'
+import { zCreateCategoryTrpcInput } from '@telegrino/back/src/router/createCategory/input'
 
 export const NewCategoryPage = () => {
   const createCategory = trpc.createCategory.useMutation()
@@ -15,17 +15,7 @@ export const NewCategoryPage = () => {
       description: '',
       text: '',
     },
-    validate: withZodSchema(
-      z.object({
-        name: z.string().min(1),
-        id: z
-          .string()
-          .min(1)
-          .regex(/^[0-9]+$/, 'Id may contain only numbers'),
-        description: z.string().min(1),
-        text: z.string().min(10, 'Text should be at least 10 characters long'),
-      })
-    ),
+    validate: withZodSchema(zCreateCategoryTrpcInput),
     onSubmit: async (values) => {
       await createCategory.mutateAsync(values)
     },
