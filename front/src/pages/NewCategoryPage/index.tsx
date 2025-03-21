@@ -9,6 +9,7 @@ import { useState } from 'react'
 
 export const NewCategoryPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false)
+  const [submittingError, setSubmittingError] = useState<string | null>(null)
   const createCategory = trpc.createCategory.useMutation()
   const formik = useFormik({
     initialValues: {
@@ -19,10 +20,15 @@ export const NewCategoryPage = () => {
     },
     validate: withZodSchema(zCreateCategoryTrpcInput),
     onSubmit: async (values) => {
-      await createCategory.mutateAsync(values)
-      formik.resetForm()
-      setSuccessMessageVisible(true)
-      setTimeout(() => setSuccessMessageVisible(false), 3000)
+      try {
+        await createCategory.mutateAsync(values)
+        formik.resetForm()
+        setSuccessMessageVisible(true)
+        setTimeout(() => setSuccessMessageVisible(false), 3000)
+      } catch (error: any) {
+        setSubmittingError(error.message)
+        setTimeout(() => setSubmittingError(null), 3000)
+      }
     },
   })
 
@@ -39,6 +45,7 @@ export const NewCategoryPage = () => {
         <Input name="description" label="Description" formik={formik} />
         <Textarea name="text" label="Text" formik={formik} />
         {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid</div>}
+        {!!submittingError && <div style={{ color: 'red' }}>{submittingError}</div>}
         {successMessageVisible && <div style={{ color: 'green' }}>Category created</div>}
         <button type="submit" disabled={formik.isSubmitting}>
           {formik.isSubmitting ? 'Submitting...' : 'Create Idea'}
