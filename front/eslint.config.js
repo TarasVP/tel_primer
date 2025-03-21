@@ -22,6 +22,19 @@ export default [
         },
       ],
       '@typescript-eslint/no-explicit-any': 'off',
+
+      '@typescript-eslint/no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@telegrino/back/**', '!@telegrino/back/**/', '!@telegrino/back/**/input'],
+              allowTypeImports: true,
+              message: 'Only types and input schemas are allowed to be imported from backend workspace',
+            },
+          ],
+        },
+      ],
     },
   },
 ]
