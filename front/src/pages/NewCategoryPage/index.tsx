@@ -8,6 +8,7 @@ import { zCreateCategoryTrpcInput } from '@telegrino/back/src/router/createCateg
 import { useState } from 'react'
 import { Alert } from '../../components/Alert'
 import { Button } from '../../components/Button'
+import { FormItems } from '../../components/FormItems'
 
 export const NewCategoryPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false)
@@ -42,14 +43,16 @@ export const NewCategoryPage = () => {
           formik.handleSubmit()
         }}
       >
-        <Input name="name" label="Name" formik={formik} />
-        <Input name="id" label="Id" formik={formik} />
-        <Input name="description" label="Description" formik={formik} maxWidth={500} />
-        <Textarea name="text" label="Text" formik={formik} />
-        {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid</div>}
-        {!!submittingError && <Alert color="red">{submittingError}</Alert>}
-        {successMessageVisible && <Alert color="green">Category created!</Alert>}
-        <Button loading={formik.isSubmitting}>Create category</Button>
+        <FormItems>
+          <Input name="name" label="Name" formik={formik} />
+          <Input name="id" label="Id" formik={formik} />
+          <Input name="description" label="Description" formik={formik} maxWidth={500} />
+          <Textarea name="text" label="Text" formik={formik} />
+          {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid</div>}
+          {!!submittingError && <Alert color="red">{submittingError}</Alert>}
+          {successMessageVisible && <Alert color="green">Category created!</Alert>}
+          <Button loading={formik.isSubmitting}>Create category</Button>
+        </FormItems>
       </form>
     </Segment>
   )
