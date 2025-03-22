@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import { trpc } from '../../lib/trps'
 import { zCreateCategoryTrpcInput } from '@telegrino/back/src/router/createCategory/input'
 import { useState } from 'react'
+import { Alert } from '../../components/Alert'
 
 export const NewCategoryPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false)
@@ -45,8 +46,8 @@ export const NewCategoryPage = () => {
         <Input name="description" label="Description" formik={formik} maxWidth={500} />
         <Textarea name="text" label="Text" formik={formik} />
         {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid</div>}
-        {!!submittingError && <div style={{ color: 'red' }}>{submittingError}</div>}
-        {successMessageVisible && <div style={{ color: 'green' }}>Category created</div>}
+        {!!submittingError && <Alert color="red">{submittingError}</Alert>}
+        {successMessageVisible && <Alert color="green">Category created!</Alert>}
         <button type="submit" disabled={formik.isSubmitting}>
           {formik.isSubmitting ? 'Submitting...' : 'Create category'}
         </button>
