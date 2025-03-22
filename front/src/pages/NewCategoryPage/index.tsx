@@ -42,7 +42,7 @@ export const NewCategoryPage = () => {
       >
         <Input name="name" label="Name" formik={formik} />
         <Input name="id" label="Id" formik={formik} />
-        <Input name="description" label="Description" formik={formik} />
+        <Input name="description" label="Description" formik={formik} maxWidth={500} />
         <Textarea name="text" label="Text" formik={formik} />
         {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid</div>}
         {!!submittingError && <div style={{ color: 'red' }}>{submittingError}</div>}
