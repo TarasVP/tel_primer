@@ -48,7 +48,7 @@ export const NewCategoryPage = () => {
         {!!submittingError && <div style={{ color: 'red' }}>{submittingError}</div>}
         {successMessageVisible && <div style={{ color: 'green' }}>Category created</div>}
         <button type="submit" disabled={formik.isSubmitting}>
-          {formik.isSubmitting ? 'Submitting...' : 'Create Idea'}
+          {formik.isSubmitting ? 'Submitting...' : 'Create category'}
         </button>
       </form>
     </Segment>
