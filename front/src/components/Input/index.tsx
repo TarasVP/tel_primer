@@ -21,7 +21,7 @@ export const Input = ({
 
   return (
     <div className={cn({ [css.field]: true, [css.disabled]: disabled })}>
-      <label className={css.lable}>{label}</label>
+      <label className={css.label}>{label}</label>
       <input
         className={cn({
           [css.input]: true,

@@ -33,7 +33,7 @@ export const NewCategoryPage = () => {
   })
 
   return (
-    <Segment title="New Idea">
+    <Segment title="New Category">
       <form
         onSubmit={(e) => {
           e.preventDefault()
