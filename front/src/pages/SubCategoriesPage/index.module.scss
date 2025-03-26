@@ -1,6 +1,11 @@
 @use '../../styles/vars' as vars;
 @use '../../styles/mixins' as mixins;
 
+.createdAt {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
 .text {
   font-size: 14px;
 
