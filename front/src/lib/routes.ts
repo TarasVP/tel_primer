@@ -6,6 +6,6 @@ export const getAllCategoriesRoute = () => '/'
 
 export const subCategoriesRouteParams = getRouteParams({ categoryId: true })
 export type SubCategoriesRouteParams = typeof subCategoriesRouteParams
-export const getSubCategoriesRoute = ({ categoryId }: SubCategoriesRouteParams) => `/ideas/${categoryId}`
+export const getSubCategoriesRoute = ({ categoryId }: SubCategoriesRouteParams) => `/categories/${categoryId}`
 
 export const getNewCategoryRoute = () => '/categories/new'
