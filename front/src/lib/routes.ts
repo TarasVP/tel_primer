@@ -9,3 +9,4 @@ export type SubCategoriesRouteParams = typeof subCategoriesRouteParams
 export const getSubCategoriesRoute = ({ categoryId }: SubCategoriesRouteParams) => `/categories/${categoryId}`
 
 export const getNewCategoryRoute = () => '/categories/new'
+export const getSignUpRoute = () => '/sign-up'

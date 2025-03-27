@@ -6,6 +6,7 @@ import * as routes from './lib/routes'
 import { Layout } from './components/Layout'
 import './styles/global.scss'
 import { NewCategoryPage } from './pages/NewCategoryPage'
+import { SignUpPage } from './pages/SignUpPage'
 
 export const App = () => {
   return (
@@ -13,6 +14,7 @@ export const App = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
+            <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
             <Route path={routes.getAllCategoriesRoute()} element={<CategoriesPage />} />
             <Route
               path={routes.getSubCategoriesRoute(routes.subCategoriesRouteParams)}
