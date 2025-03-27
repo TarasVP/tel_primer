@@ -1,12 +1,8 @@
-import { z } from 'zod'
 import { trpc } from '../../lib/trpc'
+import { zSubCategoryInput } from './input'
 
 export const getSubCategoriesTrpcRoute = trpc.procedure
-  .input(
-    z.object({
-      categoryId: z.string(),
-    })
-  )
+  .input(zSubCategoryInput)
   /* .query(({ input }) => {
     const category = categories.find((category) => category.id === input.categoryId)
     return { category: category || null }
