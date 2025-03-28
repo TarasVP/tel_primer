@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { trpc } from '../../lib/trps'
+import { trpc } from '../../lib/trpc'
 import { getSubCategoriesRoute } from '../../lib/routes'
 import css from './index.module.scss'
 import { Segment } from '../../components/Segment'

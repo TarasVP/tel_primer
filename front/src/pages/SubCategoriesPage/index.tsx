@@ -1,7 +1,7 @@
 import { format } from 'date-fns/format'
 import { useParams } from 'react-router-dom'
 import { SubCategoriesRouteParams } from '../../lib/routes'
-import { trpc } from '../../lib/trps'
+import { trpc } from '../../lib/trpc'
 import css from './index.module.scss'
 import { Segment } from '../../components/Segment'
 

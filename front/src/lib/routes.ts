@@ -10,3 +10,4 @@ export const getSubCategoriesRoute = ({ categoryId }: SubCategoriesRouteParams) 
 
 export const getNewCategoryRoute = () => '/categories/new'
 export const getSignUpRoute = () => '/sign-up'
+export const getSignInRoute = () => '/sign-in'
