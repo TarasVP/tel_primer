@@ -3,6 +3,7 @@ import { trpc } from '../lib/trpc'
 import { createCategoryTrpcRoute } from './createCategory'
 import { getCategoriesTrpcRoute } from './getCategories'
 import { getSubCategoriesTrpcRoute } from './getSubCategories'
+import { signInTrpcRoute } from './signIn'
 import { signUpTrpcRoute } from './signUp'
 // @endindex
 
@@ -11,6 +12,7 @@ export const trpcRouter = trpc.router({
   createCategory: createCategoryTrpcRoute,
   getCategories: getCategoriesTrpcRoute,
   getSubCategories: getSubCategoriesTrpcRoute,
+  signIn: signInTrpcRoute,
   signUp: signUpTrpcRoute,
   // @endindex
 })
