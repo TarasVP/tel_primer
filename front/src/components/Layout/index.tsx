@@ -5,7 +5,7 @@ import { trpc } from '../../lib/trpc'
 
 export const Layout = () => {
   const { data, isLoading, isFetching, isError } = trpc.getMe.useQuery()
-  console.info(data)
+
   return (
     <div className={css.layout}>
       <div className={css.navigation}>
@@ -23,11 +23,11 @@ export const Layout = () => {
                   Add category
                 </Link>
               </li>
-              {/* <li className={css.item}>
+              <li className={css.item}>
                 <Link className={css.link} to={routes.getSignOutRoute()}>
-                  Log out
+                  Log out ({data.me.nick})
                 </Link>
-              </li> */}
+              </li>
             </>
           ) : (
             <>

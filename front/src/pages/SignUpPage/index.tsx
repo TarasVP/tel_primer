@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const SignUpPage = () => {
   const navigate = useNavigate()
+  const trpcUtils = trpc.useContext()
   const [submittingError, setSubmittingError] = useState<string | null>(null)
   const signUp = trpc.signUp.useMutation()
   const formik = useFormik({
@@ -42,7 +43,8 @@ export const SignUpPage = () => {
       try {
         setSubmittingError(null)
         const { token } = await signUp.mutateAsync(values)
-        Cookies.set('token', token, { expiress: 99999 })
+        Cookies.set('token', token, { expires: 99999 })
+        void trpcUtils.invalidate()
         navigate(getAllCategoriesRoute())
       } catch (err: any) {
         setSubmittingError(err.message)

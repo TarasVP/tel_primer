@@ -1,11 +1,11 @@
 import { type inferAsyncReturnType, initTRPC } from '@trpc/server'
-import { TrpcRouter } from '../router'
+import { type TrpcRouter } from '../router'
 import { type Express } from 'express'
 import * as trpcExpress from '@trpc/server/adapters/express'
-import { AppContext } from './ctx'
+import { type AppContext } from './ctx'
 import superjson from 'superjson'
 import { expressHandler } from 'trpc-playground/handlers/express'
-import { ExpressRequest } from '../utils/types'
+import { type ExpressRequest } from '../utils/types'
 
 const getCreateTrpcContext =
   (appContext: AppContext) =>
