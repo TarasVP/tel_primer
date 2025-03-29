@@ -26,7 +26,8 @@ export const SignInPage = () => {
       try {
         setSubmittingError(null)
         const { token } = await signIn.mutateAsync(values)
-        Cookies.set('token', token, { expiress: 99999 })
+        Cookies.set('token', token, { expires: 99999 })
+        console.info(Cookies.get('token'))
         navigate(getAllCategoriesRoute())
       } catch (err: any) {
         setSubmittingError(err.message)

@@ -5,7 +5,7 @@ import { trpc } from '../../lib/trpc'
 
 export const Layout = () => {
   const { data, isLoading, isFetching, isError } = trpc.getMe.useQuery()
-
+  console.info(data)
   return (
     <div className={css.layout}>
       <div className={css.navigation}>
