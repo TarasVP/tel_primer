@@ -8,6 +8,7 @@ export default [
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
+
   {
     rules: {
       'react/react-in-jsx-scope': 'off',
