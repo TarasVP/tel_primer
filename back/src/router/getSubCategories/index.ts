@@ -12,6 +12,14 @@ export const getSubCategoriesTrpcRoute = trpc.procedure
       where: {
         id: input.categoryId,
       },
+      include: {
+        author: {
+          select: {
+            id: true,
+            nick: true,
+          },
+        },
+      },
     })
 
     return { category }

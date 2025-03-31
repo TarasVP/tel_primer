@@ -27,6 +27,7 @@ export const SubCategoriesPage = () => {
   return (
     <Segment title={category.name} description={category.description}>
       <div className={css.createdAt}>Created At: {format(category.createdAt, 'yyyy-MM-dd')}</div>
+      <div className={css.author}>Author: {category.author.nick}</div>
       <div className={css.text} dangerouslySetInnerHTML={{ __html: category.text }}></div>
     </Segment>
   )
