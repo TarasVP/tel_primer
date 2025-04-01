@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { trpc } from '../../lib/trpc'
-import { getSubCategoriesRoute } from '../../lib/routes'
+import { getCategoryRoute } from '../../lib/routes'
 import css from './index.module.scss'
 import { Segment } from '../../components/Segment'
 
@@ -25,7 +25,7 @@ export const CategoriesPage = () => {
             <Segment
               size={2}
               title={
-                <Link className={css.categoryLink} to={getSubCategoriesRoute({ categoryId: category.id })}>
+                <Link className={css.categoryLink} to={getCategoryRoute({ categoryId: category.id })}>
                   {category.name}
                 </Link>
               }
