@@ -1,9 +1,6 @@
 import type { TrpcRouterOutput } from '@telegrino/back/src/router'
 import { zUpdateCtegoryTrpcInput } from '@telegrino/back/src/router/updateCategory/input'
-import { useFormik } from 'formik'
-import { withZodSchema } from 'formik-validator-zod'
 import pick from 'lodash/pick'
-import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Alert } from '../../components/Alert'
 import { Button } from '../../components/Button'
@@ -13,6 +10,7 @@ import { Segment } from '../../components/Segment'
 import { Textarea } from '../../components/Textarea'
 import { type EditCategoryRouteParams, getCategoryRoute } from '../../lib/routes'
 import { trpc } from '../../lib/trpc'
+import { useForm } from '../../lib/form'
 
 const EditCategoryComponent = ({
   category,
@@ -20,19 +18,13 @@ const EditCategoryComponent = ({
   category: NonNullable<TrpcRouterOutput['getCategory']['category']>
 }) => {
   const navigate = useNavigate()
-  const [submittingError, setSubmittingError] = useState<string | null>(null)
   const updateCategory = trpc.updateCategory.useMutation()
-  const formik = useFormik({
+  const { formik, buttonProps, alertProps } = useForm({
     initialValues: pick(category, ['name', 'id', 'description', 'text']),
-    validate: withZodSchema(zUpdateCtegoryTrpcInput.omit({ categoryId: true })),
+    validationSchema: zUpdateCtegoryTrpcInput.omit({ categoryId: true }),
     onSubmit: async (values) => {
-      try {
-        setSubmittingError(null)
-        await updateCategory.mutateAsync({ categoryId: category.id, ...values })
-        navigate(getCategoryRoute({ categoryId: values.id }))
-      } catch (err: any) {
-        setSubmittingError(err.message)
-      }
+      await updateCategory.mutateAsync({ categoryId: category.id, ...values })
+      navigate(getCategoryRoute({ categoryId: values.id }))
     },
   })
 
@@ -44,9 +36,8 @@ const EditCategoryComponent = ({
           <Input label="Id" name="id" formik={formik} />
           <Input label="Description" name="description" maxWidth={500} formik={formik} />
           <Textarea label="Text" name="text" formik={formik} />
-          {!formik.isValid && !!formik.submitCount && <Alert color="red">Some fields are invalid</Alert>}
-          {submittingError && <Alert color="red">{submittingError}</Alert>}
-          <Button loading={formik.isSubmitting}>Update Idea</Button>
+          <Alert {...alertProps} />
+          <Button {...buttonProps}>Update category</Button>
         </FormItems>
       </form>
     </Segment>
