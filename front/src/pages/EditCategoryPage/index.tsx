@@ -11,6 +11,7 @@ import { Textarea } from '../../components/Textarea'
 import { type EditCategoryRouteParams, getCategoryRoute } from '../../lib/routes'
 import { trpc } from '../../lib/trpc'
 import { useForm } from '../../lib/form'
+import { useMe } from '../../lib/ctx'
 
 const EditCategoryComponent = ({
   category,
@@ -50,9 +51,9 @@ export const EditCategoryPage = () => {
   const getCategoryResult = trpc.getCategory.useQuery({
     categoryId,
   })
-  const getMeResult = trpc.getMe.useQuery()
+  const me = useMe()
 
-  if (getCategoryResult.isLoading || getCategoryResult.isFetching || getMeResult.isLoading || getMeResult.isFetching) {
+  if (getCategoryResult.isLoading || getCategoryResult.isFetching) {
     return <span>Loading...</span>
   }
 
@@ -60,16 +61,11 @@ export const EditCategoryPage = () => {
     return <span>Error: {getCategoryResult.error.message}</span>
   }
 
-  if (getMeResult.isError) {
-    return <span>Error: {getMeResult.error.message}</span>
-  }
-
   if (!getCategoryResult.data.category) {
     return <span>Idea not found</span>
   }
 
   const category = getCategoryResult.data.category
-  const me = getMeResult.data.me
 
   if (!me) {
     return <span>Only for authorized</span>

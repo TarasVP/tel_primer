@@ -5,12 +5,13 @@ import { trpc } from '../../lib/trpc'
 import css from './index.module.scss'
 import { Segment } from '../../components/Segment'
 import { LinkButton } from '../../components/Button'
+import { useMe } from '../../lib/ctx'
 
 export const CategoryPage = () => {
   const { categoryId } = useParams() as CategoryRouteParams
 
   const getCategoryResult = trpc.getCategory.useQuery({ categoryId })
-  const getMeResult = trpc.getMe.useQuery()
+  const me = useMe()
 
   if (getCategoryResult.isLoading || getCategoryResult.isFetching) {
     return <span>Loading..</span>
@@ -20,17 +21,11 @@ export const CategoryPage = () => {
     return <span>Error: {getCategoryResult.error.message}</span>
   }
 
-  if (getMeResult.isError) {
-    return <span>Error: {getMeResult.error.message}</span>
-  }
-
   const category = getCategoryResult.data.category
 
   if (!category) {
     return <span>Category not found</span>
   }
-
-  const me = getMeResult.data!.me
 
   return (
     <Segment title={category.name} description={category.description}>
