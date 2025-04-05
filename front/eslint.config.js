@@ -22,7 +22,8 @@ export default [
         },
       ],
       '@typescript-eslint/no-explicit-any': 'off',
-
+      '@typescript-eslint/no-empty-object-type': 'off',
+      'react/display-name': 'off',
       '@typescript-eslint/no-restricted-imports': [
         'error',
         {
