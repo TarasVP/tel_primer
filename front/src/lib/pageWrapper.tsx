@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { ErrorPageComponent } from '../components/ErrorPageComponent'
 import { useAppContext, type AppContext } from './ctx'
 import { getAllCategoriesRoute } from './routes'
-import { NotFoundPage } from '../pages/NotFoundPage'
+import { NotFoundPage } from '../pages/other/NotFoundPage'
 
 class CheckExistsError extends Error {}
 const checkExistsFn = <T,>(value: T, message?: string): NonNullable<T> => {
