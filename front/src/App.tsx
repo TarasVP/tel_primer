@@ -11,6 +11,7 @@ import { SignInPage } from './pages/SignInPage'
 import { SignOutPage } from './pages/SignOutPage'
 import { EditCategoryPage } from './pages/EditCategoryPage'
 import { AppContextProvider } from './lib/ctx'
+import { NotFoundPage } from './pages/NotFoundPage'
 
 export const App = () => {
   return (
@@ -29,6 +30,7 @@ export const App = () => {
                 element={<EditCategoryPage />}
               />
               <Route path={routes.getNewCategoryRoute()} element={<NewCategoryPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
