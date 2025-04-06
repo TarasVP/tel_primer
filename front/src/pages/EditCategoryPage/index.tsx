@@ -20,13 +20,13 @@ export const EditCategoryPage = withPageWrapper({
       categoryId,
     })
   },
-  checkExists: ({ queryResult }) => !!queryResult.data.category,
-  checkExistsMessage: 'Category not found',
-  checkAccess: ({ queryResult, ctx }) => !!ctx.me && ctx.me.id === queryResult.data.category?.authorId,
-  checkAccessMessage: 'An category can only be edited by the author',
-  setProps: ({ queryResult }) => ({
-    category: queryResult.data.category!,
-  }),
+  setProps: ({ queryResult, ctx, checkExists, checkAccess }) => {
+    const category = checkExists(queryResult.data.category, 'Category not found')
+    checkAccess(ctx.me?.id === category.authorId, 'An category can only be edited by the author')
+    return {
+      category,
+    }
+  },
 })(({ category }) => {
   const navigate = useNavigate()
   const updateCategory = trpc.updateCategory.useMutation()

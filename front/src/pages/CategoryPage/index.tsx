@@ -14,10 +14,8 @@ export const CategoryPage = withPageWrapper({
       categoryId,
     })
   },
-  checkExists: ({ queryResult }) => !!queryResult.data.category,
-  checkExistsMessage: 'Idea not found',
-  setProps: ({ queryResult, ctx }) => ({
-    category: queryResult.data.category!,
+  setProps: ({ queryResult, checkExists, ctx }) => ({
+    category: checkExists(queryResult.data.category, 'Idea not found'),
     me: ctx.me,
   }),
 })(({ category, me }) => (
