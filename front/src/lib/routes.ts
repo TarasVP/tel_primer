@@ -12,6 +12,7 @@ export const getNewCategoryRoute = () => '/categories/new'
 export const getSignUpRoute = () => '/sign-up'
 export const getSignInRoute = () => '/sign-in'
 export const getSignOutRoute = () => '/sign-out'
+export const getEditProfileRoute = () => '/edit-profile'
 
 export const editCategoryRouteParams = getRouteParams({ categoryId: true })
 export type EditCategoryRouteParams = typeof editCategoryRouteParams

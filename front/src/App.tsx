@@ -12,6 +12,7 @@ import { SignOutPage } from './pages/auth/SignOutPage'
 import { EditCategoryPage } from './pages/categories/EditCategoryPage'
 import { AppContextProvider } from './lib/ctx'
 import { NotFoundPage } from './pages/other/NotFoundPage'
+import { EditProfilePage } from './pages/auth/EditProfilePage'
 
 export const App = () => {
   return (
@@ -23,6 +24,7 @@ export const App = () => {
             <Route element={<Layout />}>
               <Route path={routes.getSignInRoute()} element={<SignInPage />} />
               <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
+              <Route path={routes.getEditProfileRoute()} element={<EditProfilePage />} />
               <Route path={routes.getAllCategoriesRoute()} element={<CategoriesPage />} />
               <Route path={routes.getCategoryRoute(routes.categoryRouteParams)} element={<CategoryPage />} />
               <Route

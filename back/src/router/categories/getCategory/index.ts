@@ -11,6 +11,7 @@ export const getCategoryTrpcRoute = trpc.procedure.input(zSubCategoryInput).quer
         select: {
           id: true,
           nick: true,
+          name: true,
         },
       },
     },

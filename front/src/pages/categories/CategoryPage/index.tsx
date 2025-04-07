@@ -21,7 +21,10 @@ export const CategoryPage = withPageWrapper({
 })(({ category, me }) => (
   <Segment title={category.name} description={category.description}>
     <div className={css.createdAt}>Created At: {format(category.createdAt, 'yyyy-MM-dd')}</div>
-    <div className={css.author}>Author: {category.author.nick}</div>
+    <div className={css.author}>
+      Author: {category.author.nick}
+      {category.author.name ? ` (${category.author.name})` : ''}
+    </div>
     <div className={css.text} dangerouslySetInnerHTML={{ __html: category.text }} />
     {me?.id === category.authorId && (
       <div className={css.editButton}>
