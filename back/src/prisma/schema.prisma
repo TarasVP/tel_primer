@@ -17,11 +17,12 @@ model User {
 }
 
 model Category {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  description String
-  text        String
-  createdAt   DateTime @default(now())
-  authorId    String
-  author      User     @relation(fields: [authorId], references: [id])
+  id           String   @id @default(uuid())
+  name         String   @unique
+  serialNumber Int      @unique @default(autoincrement())
+  description  String
+  text         String
+  createdAt    DateTime @default(now())
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
 }

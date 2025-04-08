@@ -1,17 +1,29 @@
 import { trpc } from '../../../lib/trpc'
+import { zGetCategoriesTrpcInput } from './input'
 
-export const getCategoriesTrpcRoute = trpc.procedure.query(async ({ ctx }) => {
-  //return { categories: categories.map((category) => _.pick(category, ['id', 'name', 'description'])) }
+export const getCategoriesTrpcRoute = trpc.procedure.input(zGetCategoriesTrpcInput).query(async ({ ctx, input }) => {
   const categories = await ctx.prisma.category.findMany({
     select: {
       id: true,
       name: true,
       description: true,
+      serialNumber: true,
     },
-    orderBy: {
-      createdAt: 'desc',
-    },
+    orderBy: [
+      {
+        createdAt: 'desc',
+      },
+      {
+        serialNumber: 'desc',
+      },
+    ],
+    cursor: input.cursor ? { serialNumber: input.cursor } : undefined,
+    take: input.limit + 1,
   })
 
-  return { categories }
+  const nextCategory = categories.at(input.limit)
+  const nextCursor = nextCategory?.serialNumber
+  const categoriesExceptNext = categories.slice(0, input.limit)
+
+  return { categories: categoriesExceptNext, nextCursor }
 })
