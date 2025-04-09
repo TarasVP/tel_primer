@@ -4,6 +4,8 @@ import { getCategoryRoute } from '../../../lib/routes'
 import css from './index.module.scss'
 import { Segment } from '../../../components/Segment'
 import { Alert } from '../../../components/Alert'
+import InfiniteScroll from 'react-infinite-scroller'
+import { layoutContentElRef } from '../../../components/Layout'
 
 export const CategoriesPage = () => {
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching } =
@@ -23,34 +25,39 @@ export const CategoriesPage = () => {
       ) : isError ? (
         <Alert color="red">{error.message}</Alert>
       ) : (
-        <div className={css.ideas}>
-          {data.pages
-            .flatMap((page) => page.categories)
-            .map((category) => (
-              <div className={css.idea} key={category.id}>
-                <Segment
-                  size={2}
-                  title={
-                    <Link className={css.ideaLink} to={getCategoryRoute({ categoryId: category.id })}>
-                      {category.name}
-                    </Link>
-                  }
-                  description={category.description}
-                />
+        <div className={css.category}>
+          <InfiniteScroll
+            threshold={250}
+            loadMore={() => {
+              if (!isFetchingNextPage && hasNextPage) {
+                void fetchNextPage()
+              }
+            }}
+            hasMore={hasNextPage}
+            loader={
+              <div className={css.more} key="loader">
+                Loading...
               </div>
-            ))}
-          <div className={css.more}>
-            {hasNextPage && !isFetchingNextPage && (
-              <button
-                onClick={() => {
-                  void fetchNextPage()
-                }}
-              >
-                Load more
-              </button>
-            )}
-            {isFetchingNextPage && <span>Loading...</span>}
-          </div>
+            }
+            getScrollParent={() => layoutContentElRef.current}
+            useWindow={(layoutContentElRef.current && getComputedStyle(layoutContentElRef.current).overflow) !== 'auto'}
+          >
+            {data.pages
+              .flatMap((page) => page.categories)
+              .map((category) => (
+                <div className={css.idea} key={category.id}>
+                  <Segment
+                    size={2}
+                    title={
+                      <Link className={css.ideaLink} to={getCategoryRoute({ categoryId: category.id })}>
+                        {category.name}
+                      </Link>
+                    }
+                    description={category.description}
+                  />
+                </div>
+              ))}
+          </InfiniteScroll>
         </div>
       )}
     </Segment>
