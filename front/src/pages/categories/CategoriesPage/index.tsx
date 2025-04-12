@@ -10,7 +10,7 @@ import { layoutContentElRef } from '../../../components/Layout'
 export const CategoriesPage = () => {
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching } =
     trpc.getCategories.useInfiniteQuery(
-      { limit: 2 },
+      {},
       {
         getNextPageParam: (lastPage) => {
           return lastPage.nextCursor
