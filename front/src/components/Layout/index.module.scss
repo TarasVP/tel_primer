@@ -19,7 +19,6 @@ $breakpoint: '<=900px';
     border-right: 1px solid vars.$black;
     @include mixins.media($breakpoint) {
       overflow: visible;
-      flex: 0 0 auto;
       height: auto;
       border-right: none;
       border-bottom: 1px solid vars.$black;
@@ -51,7 +50,7 @@ $breakpoint: '<=900px';
     padding: 20px 30px;
     @include mixins.media($breakpoint) {
       overflow: visible;
-      flex: 0 0 auto;
+      flex: 1 1 100%;
       height: auto;
     }
   }
