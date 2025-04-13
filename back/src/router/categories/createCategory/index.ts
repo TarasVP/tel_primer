@@ -7,13 +7,13 @@ export const createCategoryTrpcRoute = trpc.procedure
     if (!ctx.me) {
       throw Error('Not authenticated')
     }
-    const exIdea = await ctx.prisma.category.findUnique({
+    const exCategory = await ctx.prisma.category.findUnique({
       where: {
         id: input.id,
       },
     })
-    if (exIdea) {
-      throw Error('Idea with this nick already exists')
+    if (exCategory) {
+      throw Error('Category with this nick already exists')
     }
     await ctx.prisma.category.create({
       data: {

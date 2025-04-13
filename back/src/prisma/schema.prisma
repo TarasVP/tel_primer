@@ -8,12 +8,14 @@ datasource db {
 }
 
 model User {
-  id         String     @id @default(uuid())
-  nick       String     @unique
-  name       String     @default("")
-  password   String
-  createdAt  DateTime   @default(now())
-  categories Category[]
+  id            String        @id @default(uuid())
+  nick          String        @unique
+  name          String        @default("")
+  password      String
+  createdAt     DateTime      @default(now())
+  categories    Category[]
+  channelsLikes ChannelLike[]
+  channels      Channel[]
 }
 
 model Category {
@@ -25,4 +27,27 @@ model Category {
   createdAt    DateTime @default(now())
   authorId     String
   author       User     @relation(fields: [authorId], references: [id])
+}
+
+model Channel {
+  id           String        @id @default(uuid())
+  name         String        @unique
+  serialNumber Int           @unique @default(autoincrement())
+  description  String
+  text         String
+  createdAt    DateTime      @default(now())
+  authorId     String
+  author       User          @relation(fields: [authorId], references: [id])
+  ChannelLike  ChannelLike[]
+}
+
+model ChannelLike {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  channel   Channel  @relation(fields: [channelId], references: [id])
+  channelId String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  @@unique([channelId, userId])
 }
