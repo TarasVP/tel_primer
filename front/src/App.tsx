@@ -13,6 +13,7 @@ import { EditCategoryPage } from './pages/categories/EditCategoryPage'
 import { AppContextProvider } from './lib/ctx'
 import { NotFoundPage } from './pages/other/NotFoundPage'
 import { EditProfilePage } from './pages/auth/EditProfilePage'
+import { NewChannelPage } from './pages/channels/NewChannelPage'
 
 export const App = () => {
   return (
@@ -32,6 +33,7 @@ export const App = () => {
                 element={<EditCategoryPage />}
               />
               <Route path={routes.getNewCategoryRoute()} element={<NewCategoryPage />} />
+              <Route path={routes.getNewChannelRoute()} element={<NewChannelPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
