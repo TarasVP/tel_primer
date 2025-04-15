@@ -30,15 +30,15 @@ model Category {
 }
 
 model Channel {
-  id           String        @id @default(uuid())
-  name         String        @unique
-  serialNumber Int           @unique @default(autoincrement())
-  description  String
-  text         String
-  createdAt    DateTime      @default(now())
-  authorId     String
-  author       User          @relation(fields: [authorId], references: [id])
-  ChannelLike  ChannelLike[]
+  id            String        @id @default(uuid())
+  name          String        @unique
+  serialNumber  Int           @unique @default(autoincrement())
+  description   String
+  text          String
+  createdAt     DateTime      @default(now())
+  authorId      String
+  author        User          @relation(fields: [authorId], references: [id])
+  channelsLikes ChannelLike[]
 }
 
 model ChannelLike {
