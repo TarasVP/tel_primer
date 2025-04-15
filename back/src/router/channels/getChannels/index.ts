@@ -4,6 +4,7 @@ import { zGetChannelsTrpcInput } from './input'
 export const getChannelsTrpcRoute = trpc.procedure.input(zGetChannelsTrpcInput).query(async ({ ctx, input }) => {
   const channels = await ctx.prisma.channel.findMany({
     select: {
+      id: true,
       name: true,
       description: true,
       serialNumber: true,

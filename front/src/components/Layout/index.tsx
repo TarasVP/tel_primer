@@ -19,6 +19,11 @@ export const Layout = () => {
               All categories
             </Link>
           </li>
+          <li className={css.item}>
+            <Link className={css.link} to={routes.getChannelsRoute()}>
+              All channels
+            </Link>
+          </li>
           {me ? (
             <>
               <li className={css.item}>

@@ -18,6 +18,7 @@ export const editCategoryRouteParams = getRouteParams({ categoryId: true })
 export type EditCategoryRouteParams = typeof editCategoryRouteParams
 export const getEditCategoryRoute = ({ categoryId }: EditCategoryRouteParams) => `/categories/${categoryId}/edit`
 
+export const getChannelsRoute = () => '/channels'
 export const getNewChannelRoute = () => '/channels/new'
 
 export const channelRouteParams = getRouteParams({ channelId: true })
