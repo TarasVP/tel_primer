@@ -16,6 +16,7 @@ import { EditProfilePage } from './pages/auth/EditProfilePage'
 import { NewChannelPage } from './pages/channels/NewChannelPage'
 import { ChannelPage } from './pages/channels/ChannelPage'
 import { ChannelsPage } from './pages/channels/ChannelsPage'
+import { EditChannelPage } from './pages/channels/EditChannelPage'
 
 export const App = () => {
   return (
@@ -37,6 +38,7 @@ export const App = () => {
               <Route path={routes.getNewCategoryRoute()} element={<NewCategoryPage />} />
               <Route path={routes.getChannelsRoute()} element={<ChannelsPage />} />
               <Route path={routes.getChannelRoute(routes.channelRouteParams)} element={<ChannelPage />} />
+              <Route path={routes.getEditChannelRoute(routes.editChannelRouteParams)} element={<EditChannelPage />} />
               <Route path={routes.getNewChannelRoute()} element={<NewChannelPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>

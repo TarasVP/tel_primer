@@ -13,6 +13,7 @@ import { updateCategoryTrpcRoute } from './categories/updateCategory'
 import { createChannelTrpcRoute } from './channels/createChannel'
 import { getChannelTrpcRoute } from './channels/getChannel'
 import { getChannelsTrpcRoute } from './channels/getChannels'
+import { updateChannelTrpcRoute } from './channels/updateChannel'
 // @endindex
 
 export const trpcRouter = trpc.router({
@@ -29,6 +30,7 @@ export const trpcRouter = trpc.router({
   createChannel: createChannelTrpcRoute,
   getChannel: getChannelTrpcRoute,
   getChannels: getChannelsTrpcRoute,
+  updateChannel: updateChannelTrpcRoute,
   // @endindex
 })
 

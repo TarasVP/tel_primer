@@ -1,6 +1,6 @@
 import { format } from 'date-fns/format'
 import { useParams } from 'react-router-dom'
-import { ChannelRouteParams, getChannelRoute } from '../../../lib/routes'
+import { ChannelRouteParams, getEditChannelRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
 import css from './index.module.scss'
 import { Segment } from '../../../components/Segment'
@@ -28,7 +28,7 @@ export const ChannelPage = withPageWrapper({
     <div className={css.text} dangerouslySetInnerHTML={{ __html: channel.text }} />
     {me?.id === channel.authorId && (
       <div className={css.editButton}>
-        <LinkButton to={getChannelRoute({ channelId: channel.id })}>Edit channel</LinkButton>
+        <LinkButton to={getEditChannelRoute({ channelId: channel.id })}>Edit channel</LinkButton>
       </div>
     )}
   </Segment>

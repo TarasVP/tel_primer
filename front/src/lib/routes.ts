@@ -24,3 +24,7 @@ export const getNewChannelRoute = () => '/channels/new'
 export const channelRouteParams = getRouteParams({ channelId: true })
 export type ChannelRouteParams = typeof channelRouteParams
 export const getChannelRoute = ({ channelId }: ChannelRouteParams) => `/channels/${channelId}`
+
+export const editChannelRouteParams = getRouteParams({ channelId: true })
+export type EditChannelRouteParams = typeof editChannelRouteParams
+export const getEditChannelRoute = ({ channelId }: EditChannelRouteParams) => `/channels/${channelId}/edit`
