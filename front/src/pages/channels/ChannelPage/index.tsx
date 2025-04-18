@@ -9,7 +9,7 @@ import { withPageWrapper } from '../../../lib/pageWrapper'
 import { type TrpcRouterOutput } from '@telegrino/back/src/router'
 
 const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getChannel']['channel']> }) => {
-  const trpcUtils = trpc.useContext()
+  const trpcUtils = trpc.useUtils()
   const setIdeaLike = trpc.setChannelLike.useMutation({
     onMutate: ({ isLikedByMe }) => {
       const oldGetChannelData = trpcUtils.getChannel.getData({ channelId: channel.id })
