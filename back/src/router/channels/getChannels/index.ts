@@ -1,13 +1,19 @@
 import { trpc } from '../../../lib/trpc'
 import { zGetChannelsTrpcInput } from './input'
+import _ from 'lodash'
 
 export const getChannelsTrpcRoute = trpc.procedure.input(zGetChannelsTrpcInput).query(async ({ ctx, input }) => {
-  const channels = await ctx.prisma.channel.findMany({
+  const rawChannels = await ctx.prisma.channel.findMany({
     select: {
       id: true,
       name: true,
       description: true,
       serialNumber: true,
+      _count: {
+        select: {
+          channelsLikes: true,
+        },
+      },
     },
     orderBy: [
       {
@@ -21,9 +27,13 @@ export const getChannelsTrpcRoute = trpc.procedure.input(zGetChannelsTrpcInput).
     take: input.limit + 1,
   })
 
-  const nextChannel = channels.at(input.limit)
+  const nextChannel = rawChannels.at(input.limit)
   const nextCursor = nextChannel?.serialNumber
-  const channelsExceptNext = channels.slice(0, input.limit)
+  const rawChannelsExceptNext = rawChannels.slice(0, input.limit)
+  const channelsExceptNext = rawChannelsExceptNext.map((channel) => ({
+    ..._.omit(channel, ['_count']),
+    likesCount: channel._count.channelsLikes,
+  }))
 
   return { channels: channelsExceptNext, nextCursor }
 })

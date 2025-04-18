@@ -1,4 +1,3 @@
-import { zUpdateCtegoryTrpcInput } from '@telegrino/back/src/router/categories/updateCategory/input'
 import pick from 'lodash/pick'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Alert } from '../../../components/Alert'
@@ -7,10 +6,11 @@ import { FormItems } from '../../../components/FormItems'
 import { Input } from '../../../components/Input'
 import { Segment } from '../../../components/Segment'
 import { Textarea } from '../../../components/Textarea'
-import { type EditChannelRouteParams, getCategoryRoute } from '../../../lib/routes'
+import { type EditChannelRouteParams, getChannelRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
+import { zUpdateChannelTrpcInput } from '@telegrino/back/src/router/channels/updateChannel/input'
 
 export const EditChannelPage = withPageWrapper({
   authorizedOnly: true,
@@ -28,14 +28,15 @@ export const EditChannelPage = withPageWrapper({
     }
   },
 })(({ channel }) => {
+  console.info(channel.id)
   const navigate = useNavigate()
-  const updateCategory = trpc.updateChannel.useMutation()
+  const updateChannel = trpc.updateChannel.useMutation()
   const { formik, buttonProps, alertProps } = useForm({
     initialValues: pick(channel, ['name', 'id', 'description', 'text']),
-    validationSchema: zUpdateCtegoryTrpcInput.omit({ categoryId: true }),
+    validationSchema: zUpdateChannelTrpcInput.omit({ channelId: true }),
     onSubmit: async (values) => {
-      await updateCategory.mutateAsync({ channelId: channel.id, ...values })
-      navigate(getCategoryRoute({ categoryId: values.id }))
+      await updateChannel.mutateAsync({ channelId: channel.id, ...values })
+      navigate(getChannelRoute({ channelId: channel.id }))
     },
   })
 
@@ -47,7 +48,7 @@ export const EditChannelPage = withPageWrapper({
           <Input label="Description" name="description" maxWidth={500} formik={formik} />
           <Textarea label="Text" name="text" formik={formik} />
           <Alert {...alertProps} />
-          <Button {...buttonProps}>Update category</Button>
+          <Button {...buttonProps}>Update channel</Button>
         </FormItems>
       </form>
     </Segment>

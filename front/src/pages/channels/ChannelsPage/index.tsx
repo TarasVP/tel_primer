@@ -46,7 +46,7 @@ export const ChannelsPage = () => {
             {data.pages
               .flatMap((page) => page.channels)
               .map((channel) => (
-                <div className={css.idea} key={channel.id}>
+                <div className={css.category} key={channel.id}>
                   <Segment
                     size={2}
                     title={
@@ -55,7 +55,9 @@ export const ChannelsPage = () => {
                       </Link>
                     }
                     description={channel.description}
-                  />
+                  >
+                    Likes: {channel.likesCount}
+                  </Segment>
                 </div>
               ))}
           </InfiniteScroll>

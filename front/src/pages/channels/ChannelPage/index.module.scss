@@ -20,6 +20,14 @@
   }
 }
 
+.likes {
+  margin-top: 20px;
+
+  .likeButton {
+    @include mixins.link;
+  }
+}
+
 .editButton {
   margin-top: 20px;
 }
