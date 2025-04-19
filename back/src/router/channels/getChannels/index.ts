@@ -3,6 +3,8 @@ import { zGetChannelsTrpcInput } from './input'
 import _ from 'lodash'
 
 export const getChannelsTrpcRoute = trpc.procedure.input(zGetChannelsTrpcInput).query(async ({ ctx, input }) => {
+  // const normalizedSearch = input.search ? input.search.trim().replace(/[\s\n\t]/g, '_') : undefined
+  const normalizedSearch = input.search ? input.search.trim().replace(/[\s\n\t]/g, ' & ') : undefined
   const rawChannels = await ctx.prisma.channel.findMany({
     select: {
       id: true,
@@ -15,6 +17,27 @@ export const getChannelsTrpcRoute = trpc.procedure.input(zGetChannelsTrpcInput).
         },
       },
     },
+    where: !input.search
+      ? undefined
+      : {
+          OR: [
+            {
+              name: {
+                search: normalizedSearch,
+              },
+            },
+            {
+              description: {
+                search: normalizedSearch,
+              },
+            },
+            {
+              text: {
+                search: normalizedSearch,
+              },
+            },
+          ],
+        },
     orderBy: [
       {
         createdAt: 'desc',
