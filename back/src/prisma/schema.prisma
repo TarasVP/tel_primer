@@ -9,25 +9,32 @@ datasource db {
 }
 
 model User {
-  id            String        @id @default(uuid())
-  nick          String        @unique
-  name          String        @default("")
+  id            String           @id @default(uuid())
+  nick          String           @unique
+  name          String           @default("")
   password      String
-  createdAt     DateTime      @default(now())
+  createdAt     DateTime         @default(now())
   categories    Category[]
   channelsLikes ChannelLike[]
   channels      Channel[]
+  permissions   UserPermission[]
+}
+
+enum UserPermission {
+  BLOCK_CATEGORIES
+  ALL
 }
 
 model Category {
-  id           String   @id @default(uuid())
-  name         String   @unique
-  serialNumber Int      @unique @default(autoincrement())
+  id           String    @id @default(uuid())
+  name         String    @unique
+  serialNumber Int       @unique @default(autoincrement())
   description  String
   text         String
-  createdAt    DateTime @default(now())
+  createdAt    DateTime  @default(now())
   authorId     String
-  author       User     @relation(fields: [authorId], references: [id])
+  author       User      @relation(fields: [authorId], references: [id])
+  blockedAt    DateTime?
 }
 
 model Channel {
