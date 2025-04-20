@@ -1,6 +1,10 @@
 @use '../../../styles/vars' as vars;
 @use '../../../styles/mixins' as mixins;
 
+.filter {
+  margin-bottom: 20px;
+}
+
 .categories {
   .category {
     padding: 20px;

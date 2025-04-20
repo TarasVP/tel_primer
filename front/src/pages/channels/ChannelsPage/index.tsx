@@ -9,7 +9,7 @@ import { layoutContentElRef } from '../../../components/Layout'
 import { Loader } from '../../../components/Loader'
 import { useForm } from '../../../lib/form'
 import { zGetChannelsTrpcInput } from '@telegrino/back/src/router/channels/getChannels/input'
-//import { useDebounceValue } from 'usehooks-ts'
+import { useDebounceValue } from 'usehooks-ts'
 import { Input } from '../../../components/Input'
 
 export const ChannelsPage = () => {
@@ -17,11 +17,11 @@ export const ChannelsPage = () => {
     initialValues: { search: '' },
     validationSchema: zGetChannelsTrpcInput.pick({ search: true }),
   })
-  //const search = useDebounceValue(formik.values.search, 500)
+  const [search] = useDebounceValue(formik.values.search, 500)
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching } =
     trpc.getChannels.useInfiniteQuery(
       {
-        //search,
+        search,
       },
       {
         getNextPageParam: (lastPage) => {
