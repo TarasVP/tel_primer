@@ -58,7 +58,7 @@ export const CategoryPage = withPageWrapper({
       </div>
     )}
     {canBlockCategories(me) && (
-      <div className={css.blockIdea}>
+      <div className={css.blockCategory}>
         <BlockCategory category={category} />
       </div>
     )}

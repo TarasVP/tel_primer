@@ -11,6 +11,7 @@ import { type EditCategoryRouteParams, getCategoryRoute } from '../../../lib/rou
 import { trpc } from '../../../lib/trpc'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
+import { canEditCategory } from '@telegrino/back/src/utils/can'
 
 export const EditCategoryPage = withPageWrapper({
   authorizedOnly: true,
@@ -22,7 +23,7 @@ export const EditCategoryPage = withPageWrapper({
   },
   setProps: ({ queryResult, ctx, checkExists, checkAccess }) => {
     const category = checkExists(queryResult.data.category, 'Category not found')
-    checkAccess(ctx.me?.id === category.authorId, 'An category can only be edited by the author')
+    checkAccess(canEditCategory(ctx.me, category), 'An category can only be edited by the author')
     return {
       category,
     }

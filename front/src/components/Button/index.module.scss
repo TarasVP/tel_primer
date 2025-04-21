@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../styles/vars' as vars;
 @use '../../styles/mixins' as mixins;
 
@@ -12,14 +13,6 @@
   user-select: none;
   position: relative;
 
-  &:hover {
-    background-color: #21b821;
-  }
-
-  &:active {
-    background-color: #39d039;
-  }
-
   &.color-green {
     background-color: #0a980a;
 
@@ -33,14 +26,14 @@
   }
 
   &.color-red {
-    background-color: $red;
+    background-color: vars.$red;
 
     &:hover {
-      background-color: color.scale($red, $lightness: 10%);
+      background-color: color.scale(vars.$red, $lightness: 10%);
     }
 
     &:active {
-      background-color: color.scale($red, $lightness: 30%);
+      background-color: color.scale(vars.$red, $lightness: 30%);
     }
   }
 
