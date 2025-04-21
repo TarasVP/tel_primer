@@ -16,6 +16,9 @@ export const getCategoryTrpcRoute = trpc.procedure.input(zSubCategoryInput).quer
       },
     },
   })
+  if (category?.blockedAt) {
+    throw new Error('Category is blocked by administrator')
+  }
 
   return { category }
 })

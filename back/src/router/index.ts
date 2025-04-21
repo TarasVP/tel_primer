@@ -6,6 +6,7 @@ import { signInTrpcRoute } from './auth/signIn'
 import { signUpTrpcRoute } from './auth/signUp'
 import { updatePasswordTrpcRoute } from './auth/updatePassword'
 import { updateProfileTrpcRoute } from './auth/updateProfile'
+import { blockCategoryTrpcRoute } from './categories/blockCategory'
 import { createCategoryTrpcRoute } from './categories/createCategory'
 import { getCategoriesTrpcRoute } from './categories/getCategories'
 import { getCategoryTrpcRoute } from './categories/getCategory'
@@ -24,6 +25,7 @@ export const trpcRouter = trpc.router({
   signUp: signUpTrpcRoute,
   updatePassword: updatePasswordTrpcRoute,
   updateProfile: updateProfileTrpcRoute,
+  blockCategory: blockCategoryTrpcRoute,
   createCategory: createCategoryTrpcRoute,
   getCategories: getCategoriesTrpcRoute,
   getCategory: getCategoryTrpcRoute,

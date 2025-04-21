@@ -29,7 +29,12 @@ export default [
         {
           patterns: [
             {
-              group: ['@telegrino/back/**', '!@telegrino/back/**/', '!@telegrino/back/**/input'],
+              group: [
+                '@telegrino/back/**',
+                '!@telegrino/back/**/',
+                '!@telegrino/back/**/input',
+                '!@telegrino/back/src/utils/can',
+              ],
               allowTypeImports: true,
               message: 'Only types and input schemas are allowed to be imported from backend workspace',
             },

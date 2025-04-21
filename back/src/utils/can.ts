@@ -1,0 +1,16 @@
+import type { Category, User, UserPermission } from '@prisma/client'
+
+type MaybeUser = Pick<User, 'permissions' | 'id'> | null
+type MaybeIdea = Pick<Category, 'authorId'> | null
+
+const hasPermission = (user: MaybeUser, permission: UserPermission) => {
+  return user?.permissions.includes(permission) || user?.permissions.includes('ALL') || false
+}
+
+export const canBlockCategories = (user: MaybeUser) => {
+  return hasPermission(user, 'BLOCK_CATEGORIES')
+}
+
+export const canEditCategory = (user: MaybeUser, idea: MaybeIdea) => {
+  return !!user && !!idea && user?.id === idea?.authorId
+}

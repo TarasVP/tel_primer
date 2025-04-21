@@ -9,6 +9,9 @@ export const getCategoriesTrpcRoute = trpc.procedure.input(zGetCategoriesTrpcInp
       description: true,
       serialNumber: true,
     },
+    where: {
+      blockedAt: null,
+    },
     orderBy: [
       {
         createdAt: 'desc',
