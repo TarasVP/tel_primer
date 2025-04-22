@@ -17,7 +17,7 @@ export const updateCategoryTrpcRoute = trpc.procedure
       throw new Error('NOT_FOUND')
     }
     if (ctx.me.id !== category.authorId) {
-      throw new Error('NOT_YOUR_IDEA')
+      throw new Error('NOT_YOUR_CATEGORY')
     }
     if (category.name !== input.name) {
       const exCategory = await ctx.prisma.category.findUnique({
@@ -26,7 +26,7 @@ export const updateCategoryTrpcRoute = trpc.procedure
         },
       })
       if (exCategory) {
-        throw new Error('Idea with this nick already exists')
+        throw new Error('Category with this nick already exists')
       }
     }
     await ctx.prisma.category.update({

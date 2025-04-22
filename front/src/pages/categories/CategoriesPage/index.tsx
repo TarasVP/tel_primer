@@ -46,11 +46,11 @@ export const CategoriesPage = () => {
             {data.pages
               .flatMap((page) => page.categories)
               .map((category) => (
-                <div className={css.idea} key={category.id}>
+                <div className={css.category} key={category.id}>
                   <Segment
                     size={2}
                     title={
-                      <Link className={css.ideaLink} to={getCategoryRoute({ categoryId: category.id })}>
+                      <Link className={css.categoryLink} to={getCategoryRoute({ categoryId: category.id })}>
                         {category.name}
                       </Link>
                     }

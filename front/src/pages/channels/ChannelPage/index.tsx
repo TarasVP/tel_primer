@@ -10,19 +10,19 @@ import { type TrpcRouterOutput } from '@telegrino/back/src/router'
 
 const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getChannel']['channel']> }) => {
   const trpcUtils = trpc.useUtils()
-  const setIdeaLike = trpc.setChannelLike.useMutation({
+  const setCategoryLike = trpc.setChannelLike.useMutation({
     onMutate: ({ isLikedByMe }) => {
       const oldGetChannelData = trpcUtils.getChannel.getData({ channelId: channel.id })
       if (oldGetChannelData?.channel) {
-        const newGetIdeaData = {
+        const newGetCategoryData = {
           ...oldGetChannelData,
-          idea: {
+          channel: {
             ...oldGetChannelData.channel,
             isLikedByMe,
             likesCount: oldGetChannelData.channel.likesCount + (isLikedByMe ? 1 : -1),
           },
         }
-        trpcUtils.getChannel.setData({ channelId: channel.id }, newGetIdeaData)
+        trpcUtils.getChannel.setData({ channelId: channel.id }, newGetCategoryData)
       }
     },
     onSuccess: () => {
@@ -33,7 +33,7 @@ const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getCha
     <button
       className={css.likeButton}
       onClick={() => {
-        void setIdeaLike.mutateAsync({ channelId: channel.id, isLikedByMe: !channel.isLikedByMe })
+        void setCategoryLike.mutateAsync({ channelId: channel.id, isLikedByMe: !channel.isLikedByMe })
       }}
     >
       {channel.isLikedByMe ? 'Unlike' : 'Like'}

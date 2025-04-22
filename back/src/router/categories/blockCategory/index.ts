@@ -7,12 +7,12 @@ export const blockCategoryTrpcRoute = trpc.procedure.input(zBlockCategoryTrpcInp
   if (!canBlockCategories(ctx.me)) {
     throw new Error('PERMISSION_DENIED')
   }
-  const idea = await ctx.prisma.category.findUnique({
+  const category = await ctx.prisma.category.findUnique({
     where: {
       id: categoryId,
     },
   })
-  if (!idea) {
+  if (!category) {
     throw new Error('NOT_FOUND')
   }
   await ctx.prisma.category.update({

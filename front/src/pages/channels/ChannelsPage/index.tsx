@@ -66,7 +66,7 @@ export const ChannelsPage = () => {
                   <Segment
                     size={2}
                     title={
-                      <Link className={css.ideaLink} to={getChannelRoute({ channelId: channel.id })}>
+                      <Link className={css.channelLink} to={getChannelRoute({ channelId: channel.id })}>
                         {channel.name}
                       </Link>
                     }
