@@ -44,6 +44,7 @@ export const CategoryPage = withPageWrapper({
     category: checkExists(queryResult.data.category, 'Category not found'),
     me: ctx.me,
   }),
+  title: ({ category }) => `Category "${category.name}"`,
 })(({ category, me }) => (
   <Segment title={category.name} description={category.description}>
     <div className={css.createdAt}>Created At: {format(category.createdAt, 'yyyy-MM-dd')}</div>

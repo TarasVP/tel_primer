@@ -11,6 +11,7 @@ import { withPageWrapper } from '../../../lib/pageWrapper'
 
 export const SignInPage = withPageWrapper({
   redirectAuthorized: true,
+  title: 'Glimmung - Sign in',
 })(() => {
   const trpcUtils = trpc.useContext()
   const signIn = trpc.signIn.useMutation()

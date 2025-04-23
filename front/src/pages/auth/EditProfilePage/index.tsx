@@ -85,6 +85,7 @@ export const EditProfilePage = withPageWrapper({
   setProps: ({ getAuthorizedMe }) => ({
     me: getAuthorizedMe(),
   }),
+  title: 'Glimmung - Edit profile',
 })(({ me }) => {
   return (
     <Segment title="Edit Profile">

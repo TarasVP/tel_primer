@@ -62,7 +62,7 @@ export const ChannelsPage = () => {
             {data.pages
               .flatMap((page) => page.channels)
               .map((channel) => (
-                <div className={css.category} key={channel.id}>
+                <div className={css.category} key={channel.name}>
                   <Segment
                     size={2}
                     title={

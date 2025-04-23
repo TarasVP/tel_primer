@@ -53,6 +53,7 @@ export const ChannelPage = withPageWrapper({
     me: ctx.me,
   }),
   showLoaderOnFetching: false,
+  title: ({ channel }) => `Channel "${channel.name}"`,
 })(({ channel, me }) => (
   <Segment title={channel.name} description={channel.description}>
     <div className={css.createdAt}>Created At: {format(channel.createdAt, 'yyyy-MM-dd')}</div>

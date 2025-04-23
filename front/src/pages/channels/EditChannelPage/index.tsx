@@ -27,6 +27,7 @@ export const EditChannelPage = withPageWrapper({
       channel,
     }
   },
+  title: ({ channel }) => `Edit channel "${channel.name}"`,
 })(({ channel }) => {
   console.info(channel.id)
   const navigate = useNavigate()
@@ -41,7 +42,7 @@ export const EditChannelPage = withPageWrapper({
   })
 
   return (
-    <Segment title={`Edit Channel: ${channel.id}`}>
+    <Segment title={`Edit Channel: ${channel.name}`}>
       <form onSubmit={formik.handleSubmit}>
         <FormItems>
           <Input label="Name" name="name" formik={formik} />

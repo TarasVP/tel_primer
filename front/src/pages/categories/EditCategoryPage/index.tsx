@@ -28,6 +28,7 @@ export const EditCategoryPage = withPageWrapper({
       category,
     }
   },
+  title: ({ category }) => `Edit category "${category.name}"`,
 })(({ category }) => {
   const navigate = useNavigate()
   const updateCategory = trpc.updateCategory.useMutation()
