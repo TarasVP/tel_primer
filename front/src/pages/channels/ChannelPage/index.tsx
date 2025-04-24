@@ -7,6 +7,7 @@ import { Segment } from '../../../components/Segment'
 import { LinkButton } from '../../../components/Button'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { type TrpcRouterOutput } from '@telegrino/back/src/router'
+import { Icon } from '../../../components/Icon'
 
 const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getChannel']['channel']> }) => {
   const trpcUtils = trpc.useUtils()
@@ -36,7 +37,7 @@ const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getCha
         void setCategoryLike.mutateAsync({ channelId: channel.id, isLikedByMe: !channel.isLikedByMe })
       }}
     >
-      {channel.isLikedByMe ? 'Unlike' : 'Like'}
+      <Icon size={32} className={css.likeIcon} name={channel.isLikedByMe ? 'likeFilled' : 'likeEmpty'} />
     </button>
   )
 }
