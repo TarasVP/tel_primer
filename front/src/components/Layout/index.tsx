@@ -3,6 +3,7 @@ import * as routes from '../../lib/routes'
 import css from './index.module.scss'
 import { useMe } from '../../lib/ctx'
 import { createRef } from 'react'
+import Logo from '../../assets/images/logo.svg?react'
 
 export const layoutContentElRef = createRef<HTMLDivElement>()
 
@@ -12,6 +13,7 @@ export const Layout = () => {
   return (
     <div className={css.layout}>
       <div className={css.navigation}>
+        <Logo className={css.logo} />
         <div className={css.logo}>Category</div>
         <ul className={css.menu}>
           <li className={css.item}>
