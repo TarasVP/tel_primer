@@ -8,8 +8,8 @@
     <mj-section mj-class="content">
       <mj-column>
         <mj-text mj-class="h1">Thanks For Registration, {{userNick}}!</mj-text>
-        <mj-text mj-class="text">Publish your first channel:</mj-text>
-        <mj-button mj-class="button" href="{{addIdeaUrl}}">Add Idea</mj-button>
+        <mj-text mj-class="text">Publish your first channel!:</mj-text>
+        <mj-button mj-class="button" href="{{addChannelUrl}}">Add channel</mj-button>
       </mj-column>
     </mj-section>
     <mj-include path="./_footer.mjml" />
