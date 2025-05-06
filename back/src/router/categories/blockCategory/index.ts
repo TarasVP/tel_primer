@@ -1,3 +1,4 @@
+import { sendCategoryBlockedEmail } from '../../../lib/emails'
 import { trpc } from '../../../lib/trpc'
 import { canBlockCategories } from '../../../utils/can'
 import { zBlockCategoryTrpcInput } from './input'
@@ -11,6 +12,9 @@ export const blockCategoryTrpcRoute = trpc.procedure.input(zBlockCategoryTrpcInp
     where: {
       id: categoryId,
     },
+    include: {
+      author: true,
+    },
   })
   if (!category) {
     throw new Error('NOT_FOUND')
@@ -23,5 +27,6 @@ export const blockCategoryTrpcRoute = trpc.procedure.input(zBlockCategoryTrpcInp
       blockedAt: new Date(),
     },
   })
+  void sendCategoryBlockedEmail({ user: category.author, category })
   return true
 })
