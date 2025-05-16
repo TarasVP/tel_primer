@@ -1,6 +1,7 @@
 import axios, { type AxiosResponse } from 'axios'
 import _ from 'lodash'
 import { env } from './env'
+import { randomUUID } from 'crypto'
 
 const makeRequestToRusender = async ({
   path,
@@ -16,9 +17,9 @@ const makeRequestToRusender = async ({
     method: 'POST',
     url: `https://api.beta.rusender.ru/api/v1/${path}`,
     headers: {
-      accept: 'application/json',
-      'api-key': env.RUSENDER_API_KEY,
-      'content-type': 'application/json',
+      //accept: 'application/json',
+      'X-Api-Key': env.RUSENDER_API_KEY,
+      'Content-Type': 'application/json',
     },
     data,
   })
@@ -40,6 +41,7 @@ export const sendEmailThroughRusender = async ({
   return await makeRequestToRusender({
     path: 'external-mails/send/',
     data: {
+      idempotencyKey: randomUUID(),
       mail: {
         subject,
         html,
@@ -52,6 +54,8 @@ export const sendEmailThroughRusender = async ({
           name: env.FROM_EMAIL_NAME,
         },
       },
+      cc: '',
+      bcc: '',
     },
   })
 }

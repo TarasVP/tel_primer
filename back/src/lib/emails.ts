@@ -5,6 +5,7 @@ import fg from 'fast-glob'
 import _ from 'lodash'
 import { env } from './env'
 import Handlebars from 'handlebars'
+import { sendEmailThroughRusender } from './rusender'
 
 const getHbrTemplates = _.memoize(async () => {
   const htmlPathsPattern = path.resolve(__dirname, '../emails/dist/**/*.html').replace(/\\/g, '/')
@@ -42,12 +43,13 @@ const sendEmail = async ({
       homeUrl: env.WEBAPP_URL,
     }
     const html = await getEmailHtml(templateName, fullTemplateVaraibles)
+    const { loggableResponse } = await sendEmailThroughRusender({ to, html, subject })
     console.info('sendEmail', {
       to,
       subject,
       templateName,
       fullTemplateVaraibles,
-      html,
+      response: loggableResponse,
     })
     return { ok: true }
   } catch (error) {
