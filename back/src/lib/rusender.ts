@@ -13,6 +13,15 @@ const makeRequestToRusender = async ({
   originalResponse?: AxiosResponse
   loggableResponse: Pick<AxiosResponse, 'status' | 'statusText' | 'data'>
 }> => {
+  if (!env.RUSENDER_API_KEY) {
+    return {
+      loggableResponse: {
+        status: 200,
+        statusText: 'OK',
+        data: { message: 'BREVO_API_KEY is not set' },
+      },
+    }
+  }
   const response = await axios({
     method: 'POST',
     url: `https://api.beta.rusender.ru/api/v1/${path}`,
