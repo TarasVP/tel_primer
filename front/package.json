@@ -1,5 +1,5 @@
 {
-  "name": "@telegrino/front",
+  "name": "@glimmung/front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@telegrino/back": "workspace:*",
+    "@glimmung/back": "workspace:*",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.16",
     "@types/react": "^19.0.10",

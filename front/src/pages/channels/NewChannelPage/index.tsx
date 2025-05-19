@@ -6,7 +6,7 @@ import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'
 import { FormItems } from '../../../components/FormItems'
 import { useForm } from '../../../lib/form'
-import { zCreateChannelTrpcInput } from '@telegrino/back/src/router/channels/createChannel/input'
+import { zCreateChannelTrpcInput } from '@glimmung/back/src/router/channels/createChannel/input'
 
 export const NewChannelPage = () => {
   const createChannel = trpc.createChannel.useMutation()

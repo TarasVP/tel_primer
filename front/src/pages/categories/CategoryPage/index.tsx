@@ -6,11 +6,11 @@ import css from './index.module.scss'
 import { Segment } from '../../../components/Segment'
 import { Button, LinkButton } from '../../../components/Button'
 import { withPageWrapper } from '../../../lib/pageWrapper'
-import { type TrpcRouterOutput } from '@telegrino/back/src/router'
+import { type TrpcRouterOutput } from '@glimmung/back/src/router'
 import { useForm } from '../../../lib/form'
 import { FormItems } from '../../../components/FormItems'
 import { Alert } from '../../../components/Alert'
-import { canBlockCategories, canEditCategory } from '@telegrino/back/src/utils/can'
+import { canBlockCategories, canEditCategory } from '@glimmung/back/src/utils/can'
 
 const BlockCategory = ({ category }: { category: NonNullable<TrpcRouterOutput['getCategory']['category']> }) => {
   const blockCategory = trpc.blockCategory.useMutation()

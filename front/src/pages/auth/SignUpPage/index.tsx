@@ -1,4 +1,4 @@
-import { zSignUpTrpcInput } from '@telegrino/back/src/router/auth/signUp/input'
+import { zSignUpTrpcInput } from '@glimmung/back/src/router/auth/signUp/input'
 import { z } from 'zod'
 import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'

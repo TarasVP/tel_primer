@@ -1,4 +1,4 @@
-import { zUpdateProfileTrpcInput } from '@telegrino/back/src/router/auth/updateProfile/input'
+import { zUpdateProfileTrpcInput } from '@glimmung/back/src/router/auth/updateProfile/input'
 import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'
 import { FormItems } from '../../../components/FormItems'
@@ -7,8 +7,8 @@ import { Segment } from '../../../components/Segment'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { trpc } from '../../../lib/trpc'
-import { type TrpcRouterOutput } from '@telegrino/back/src/router'
-import { zUpdatePasswordTrpcInput } from '@telegrino/back/src/router/auth/updatePassword/input'
+import { type TrpcRouterOutput } from '@glimmung/back/src/router'
+import { zUpdatePasswordTrpcInput } from '@glimmung/back/src/router/auth/updatePassword/input'
 import { z } from 'zod'
 
 const General = ({ me }: { me: NonNullable<TrpcRouterOutput['getMe']['me']> }) => {

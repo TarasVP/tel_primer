@@ -1,10 +1,10 @@
 {
-  "name": "telegrino",
+  "name": "glimmung",
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "b": "pnpm --filter @telegrino/back",
-    "f": "pnpm --filter @telegrino/front",
+    "b": "pnpm --filter @glimmung/back",
+    "f": "pnpm --filter @glimmung/front",
     "dev": "pnpm -r --parallel dev",
     "types": "concurrently \"pnpm b types\" \"pnpm f types\"",
     "lint": "concurrently \"pnpm b lint\" \"pnpm f lint\"",

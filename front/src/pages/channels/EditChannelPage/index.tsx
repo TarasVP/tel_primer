@@ -10,7 +10,7 @@ import { type EditChannelRouteParams, getChannelRoute } from '../../../lib/route
 import { trpc } from '../../../lib/trpc'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
-import { zUpdateChannelTrpcInput } from '@telegrino/back/src/router/channels/updateChannel/input'
+import { zUpdateChannelTrpcInput } from '@glimmung/back/src/router/channels/updateChannel/input'
 
 export const EditChannelPage = withPageWrapper({
   authorizedOnly: true,

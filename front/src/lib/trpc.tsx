@@ -1,5 +1,5 @@
 import { createTRPCReact } from '@trpc/react-query'
-import type { TrpcRouter } from '@telegrino/back/src/router'
+import type { TrpcRouter } from '@glimmung/back/src/router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { httpBatchLink } from '@trpc/client'
 import superjson from 'superjson'

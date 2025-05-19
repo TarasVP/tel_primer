@@ -8,7 +8,7 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { layoutContentElRef } from '../../../components/Layout'
 import { Loader } from '../../../components/Loader'
 import { useForm } from '../../../lib/form'
-import { zGetChannelsTrpcInput } from '@telegrino/back/src/router/channels/getChannels/input'
+import { zGetChannelsTrpcInput } from '@glimmung/back/src/router/channels/getChannels/input'
 import { useDebounceValue } from 'usehooks-ts'
 import { Input } from '../../../components/Input'
 

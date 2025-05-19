@@ -6,7 +6,7 @@ import css from './index.module.scss'
 import { Segment } from '../../../components/Segment'
 import { LinkButton } from '../../../components/Button'
 import { withPageWrapper } from '../../../lib/pageWrapper'
-import { type TrpcRouterOutput } from '@telegrino/back/src/router'
+import { type TrpcRouterOutput } from '@glimmung/back/src/router'
 import { Icon } from '../../../components/Icon'
 
 const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getChannel']['channel']> }) => {

@@ -1,4 +1,4 @@
-import type { TrpcRouterOutput } from '@telegrino/back/src/router'
+import type { TrpcRouterOutput } from '@glimmung/back/src/router'
 import { createContext, useContext } from 'react'
 import { trpc } from './trpc'
 import { Loader } from '../components/Loader'

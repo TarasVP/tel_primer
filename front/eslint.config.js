@@ -37,10 +37,10 @@ export default [
           patterns: [
             {
               group: [
-                '@telegrino/back/**',
-                '!@telegrino/back/**/',
-                '!@telegrino/back/**/input',
-                '!@telegrino/back/src/utils/can',
+                '@glimmung/back/**',
+                '!@glimmung/back/**/',
+                '!@glimmung/back/**/input',
+                '!@glimmung/back/src/utils/can',
               ],
               allowTypeImports: true,
               message: 'Only types and input schemas are allowed to be imported from backend workspace',

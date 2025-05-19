@@ -75,6 +75,9 @@ importers:
       '@eslint/js':
         specifier: ^9.21.0
         version: 9.21.0
+      '@glimmung/front':
+        specifier: workspace:*
+        version: link:../front
       '@types/cors':
         specifier: ^2.8.17
         version: 2.8.17
@@ -190,7 +193,7 @@ importers:
       '@eslint/js':
         specifier: ^9.21.0
         version: 9.21.0
-      '@telegrino/back':
+      '@glimmung/back':
         specifier: workspace:*
         version: link:../back
       '@types/js-cookie':

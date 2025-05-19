@@ -1,4 +1,4 @@
-import { zUpdateCtegoryTrpcInput } from '@telegrino/back/src/router/categories/updateCategory/input'
+import { zUpdateCtegoryTrpcInput } from '@glimmung/back/src/router/categories/updateCategory/input'
 import pick from 'lodash/pick'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Alert } from '../../../components/Alert'
@@ -11,7 +11,7 @@ import { type EditCategoryRouteParams, getCategoryRoute } from '../../../lib/rou
 import { trpc } from '../../../lib/trpc'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
-import { canEditCategory } from '@telegrino/back/src/utils/can'
+import { canEditCategory } from '@glimmung/back/src/utils/can'
 
 export const EditCategoryPage = withPageWrapper({
   authorizedOnly: true,
