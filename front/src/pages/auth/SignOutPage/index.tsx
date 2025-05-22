@@ -7,7 +7,7 @@ import { Loader } from '../../../components/Loader'
 
 export const SignOutPage = () => {
   const navigate = useNavigate()
-  const trpcUtils = trpc.useContext()
+  const trpcUtils = trpc.useUtils()
   useEffect(() => {
     Cookies.remove('token')
     void trpcUtils.invalidate().then(() => {

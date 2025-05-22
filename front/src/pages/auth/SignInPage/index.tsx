@@ -13,7 +13,7 @@ export const SignInPage = withPageWrapper({
   redirectAuthorized: true,
   title: 'Glimmung - Sign in',
 })(() => {
-  const trpcUtils = trpc.useContext()
+  const trpcUtils = trpc.useUtils()
   const signIn = trpc.signIn.useMutation()
   const { formik, buttonProps, alertProps } = useForm({
     initialValues: {

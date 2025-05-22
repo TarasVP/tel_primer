@@ -6,6 +6,7 @@ import _ from 'lodash'
 import { env } from './env'
 import Handlebars from 'handlebars'
 import { sendEmailThroughRusender } from './rusender'
+import { getNewChannelRoute } from '@glimmung/front/src/lib/routes'
 
 const getHbrTemplates = _.memoize(async () => {
   const htmlPathsPattern = path.resolve(__dirname, '../emails/dist/**/*.html').replace(/\\/g, '/')
@@ -40,7 +41,7 @@ const sendEmail = async ({
   try {
     const fullTemplateVaraibles = {
       ...templateVariables,
-      homeUrl: env.WEBAPP_URL,
+      homeUrl: env.FRONTEND_URL,
     }
     const html = await getEmailHtml(templateName, fullTemplateVaraibles)
     const { loggableResponse } = await sendEmailThroughRusender({ to, html, subject })
@@ -65,7 +66,7 @@ export const sendWelcomeEmail = async ({ user }: { user: Pick<User, 'nick' | 'em
     templateName: 'welcome',
     templateVariables: {
       userNick: user.nick,
-      addChannelUrl: `${env.WEBAPP_URL}/channels/new`,
+      addChannelUrl: `${env.FRONTEND_URL}${getNewChannelRoute()}`,
     },
   })
 }

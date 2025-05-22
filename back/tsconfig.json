@@ -4,6 +4,10 @@
     "transpileOnly": true
   },
   "compilerOptions": {
+    "plugins": [{ "transform": "typescript-transform-paths" }],
+    "paths": {
+      "@glimmung/front/*": ["../front/*"]
+    },
     "outDir": "./dist",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,

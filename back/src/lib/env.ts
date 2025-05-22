@@ -15,7 +15,7 @@ const zEnv = z.object({
   JWT_SECRET: zNonemptyTrimmed,
   PASSWORD_SALT: zNonemptyTrimmed,
   INITIAL_ADMIN_PASSWORD: zNonemptyTrimmed,
-  WEBAPP_URL: zNonemptyTrimmed,
+  FRONTEND_URL: zNonemptyTrimmed,
   RUSENDER_API_KEY: zNonemptyTrimmedRequiredOnNotLocal,
   FROM_EMAIL_NAME: zNonemptyTrimmed,
   FROM_EMAIL_ADDRESS: zNonemptyTrimmed,

@@ -12,7 +12,7 @@ import { zUpdatePasswordTrpcInput } from '@glimmung/back/src/router/auth/updateP
 import { z } from 'zod'
 
 const General = ({ me }: { me: NonNullable<TrpcRouterOutput['getMe']['me']> }) => {
-  const trpcUtils = trpc.useContext()
+  const trpcUtils = trpc.useUtils()
   const updateProfile = trpc.updateProfile.useMutation()
   const { formik, alertProps, buttonProps } = useForm({
     initialValues: {

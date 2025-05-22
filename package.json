@@ -14,6 +14,8 @@
     "concurrently": "^9.1.2",
     "copyfiles": "^2.4.1",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.3"
+    "lint-staged": "^15.4.3",
+    "ts-patch": "^3.3.0",
+    "typescript-transform-paths": "^3.5.5"
   }
 }
