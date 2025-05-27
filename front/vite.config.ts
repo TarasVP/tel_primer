@@ -4,7 +4,15 @@ import svgr from 'vite-plugin-svgr'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  console.info(env.VITE_BACKEND_TRPC_URL)
+  const publicEnv = Object.entries(env).reduce((acc, [key, value]) => {
+    if (key.startsWith('VITE_')) {
+      return {
+        ...acc,
+        [key]: value,
+      }
+    }
+    return acc
+  }, {})
 
   return {
     plugins: [react(), svgr()],
@@ -13,6 +21,9 @@ export default defineConfig(({ mode }) => {
     },
     preview: {
       port: +env.PORT,
+    },
+    define: {
+      'process.env': publicEnv,
     },
   }
 })
