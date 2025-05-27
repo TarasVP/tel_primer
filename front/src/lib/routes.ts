@@ -1,30 +1,25 @@
-const getRouteParams = <T extends Record<string, boolean>>(object: T) => {
-  return Object.keys(object).reduce((acc, key) => ({ ...acc, [key]: `:${key}` }), {}) as Record<keyof T, string>
-}
+import { pgr } from '../utils/pumpGetRoute'
 
-export const getAllCategoriesRoute = () => '/'
+export const getSignUpRoute = pgr(() => '/sign-up')
 
-export const categoryRouteParams = getRouteParams({ categoryId: true })
-export type CategoryRouteParams = typeof categoryRouteParams
-export const getCategoryRoute = ({ categoryId }: CategoryRouteParams) => `/categories/${categoryId}`
+export const getSignInRoute = pgr(() => '/sign-in')
 
-export const getNewCategoryRoute = () => '/categories/new'
-export const getSignUpRoute = () => '/sign-up'
-export const getSignInRoute = () => '/sign-in'
-export const getSignOutRoute = () => '/sign-out'
-export const getEditProfileRoute = () => '/edit-profile'
+export const getSignOutRoute = pgr(() => '/sign-out')
 
-export const editCategoryRouteParams = getRouteParams({ categoryId: true })
-export type EditCategoryRouteParams = typeof editCategoryRouteParams
-export const getEditCategoryRoute = ({ categoryId }: EditCategoryRouteParams) => `/categories/${categoryId}/edit`
+export const getEditProfileRoute = pgr(() => '/edit-profile')
 
-export const getChannelsRoute = () => '/channels'
-export const getNewChannelRoute = () => '/channels/new'
+export const getAllCategoriesRoute = pgr(() => '/')
 
-export const channelRouteParams = getRouteParams({ channelId: true })
-export type ChannelRouteParams = typeof channelRouteParams
-export const getChannelRoute = ({ channelId }: ChannelRouteParams) => `/channels/${channelId}`
+export const getCategoryRoute = pgr({ categoryId: true }, ({ categoryId }) => `/categories/${categoryId}`)
 
-export const editChannelRouteParams = getRouteParams({ channelId: true })
-export type EditChannelRouteParams = typeof editChannelRouteParams
-export const getEditChannelRoute = ({ channelId }: EditChannelRouteParams) => `/channels/${channelId}/edit`
+export const getEditCategoryRoute = pgr({ categoryId: true }, ({ categoryId }) => `/categories/${categoryId}/edit`)
+
+export const getNewCategoryRoute = pgr(() => '/categories/new')
+
+export const getChannelsRoute = pgr(() => '/channels')
+
+export const getChannelRoute = pgr({ channelId: true }, ({ channelId }) => `/chanels/${channelId}`)
+
+export const getEditChannelRoute = pgr({ channelId: true }, ({ channelId }) => `/chanels/${channelId}/edit`)
+
+export const getNewChannelRoute = pgr(() => '/channels/new')

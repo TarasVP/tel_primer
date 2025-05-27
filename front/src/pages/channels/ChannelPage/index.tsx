@@ -1,6 +1,5 @@
 import { format } from 'date-fns/format'
-import { useParams } from 'react-router-dom'
-import { ChannelRouteParams, getEditChannelRoute } from '../../../lib/routes'
+import { getChannelRoute, getEditChannelRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
 import css from './index.module.scss'
 import { Segment } from '../../../components/Segment'
@@ -11,11 +10,11 @@ import { Icon } from '../../../components/Icon'
 
 const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getChannel']['channel']> }) => {
   const trpcUtils = trpc.useUtils()
-  const setCategoryLike = trpc.setChannelLike.useMutation({
+  const setChannelLike = trpc.setChannelLike.useMutation({
     onMutate: ({ isLikedByMe }) => {
       const oldGetChannelData = trpcUtils.getChannel.getData({ channelId: channel.id })
       if (oldGetChannelData?.channel) {
-        const newGetCategoryData = {
+        const newGetChannelData = {
           ...oldGetChannelData,
           channel: {
             ...oldGetChannelData.channel,
@@ -23,7 +22,7 @@ const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getCha
             likesCount: oldGetChannelData.channel.likesCount + (isLikedByMe ? 1 : -1),
           },
         }
-        trpcUtils.getChannel.setData({ channelId: channel.id }, newGetCategoryData)
+        trpcUtils.getChannel.setData({ channelId: channel.id }, newGetChannelData)
       }
     },
     onSuccess: () => {
@@ -34,7 +33,7 @@ const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getCha
     <button
       className={css.likeButton}
       onClick={() => {
-        void setCategoryLike.mutateAsync({ channelId: channel.id, isLikedByMe: !channel.isLikedByMe })
+        void setChannelLike.mutateAsync({ channelId: channel.id, isLikedByMe: !channel.isLikedByMe })
       }}
     >
       <Icon size={32} className={css.likeIcon} name={channel.isLikedByMe ? 'likeFilled' : 'likeEmpty'} />
@@ -44,7 +43,7 @@ const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getCha
 
 export const ChannelPage = withPageWrapper({
   useQuery: () => {
-    const { channelId } = useParams() as ChannelRouteParams
+    const { channelId } = getChannelRoute.useParams()
     return trpc.getChannel.useQuery({
       channelId,
     })

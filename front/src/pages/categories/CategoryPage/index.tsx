@@ -1,6 +1,5 @@
 import { format } from 'date-fns/format'
-import { useParams } from 'react-router-dom'
-import { CategoryRouteParams, getEditCategoryRoute } from '../../../lib/routes'
+import { getCategoryRoute, getEditCategoryRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
 import css from './index.module.scss'
 import { Segment } from '../../../components/Segment'
@@ -35,7 +34,8 @@ const BlockCategory = ({ category }: { category: NonNullable<TrpcRouterOutput['g
 
 export const CategoryPage = withPageWrapper({
   useQuery: () => {
-    const { categoryId } = useParams() as CategoryRouteParams
+    //const { categoryId } = useParams() as CategoryRouteParams
+    const { categoryId } = getCategoryRoute.useParams()
     return trpc.getCategory.useQuery({
       categoryId,
     })

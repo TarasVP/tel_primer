@@ -1,13 +1,13 @@
 import { zUpdateCtegoryTrpcInput } from '@glimmung/back/src/router/categories/updateCategory/input'
 import pick from 'lodash/pick'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'
 import { FormItems } from '../../../components/FormItems'
 import { Input } from '../../../components/Input'
 import { Segment } from '../../../components/Segment'
 import { Textarea } from '../../../components/Textarea'
-import { type EditCategoryRouteParams, getCategoryRoute } from '../../../lib/routes'
+import { getCategoryRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
@@ -16,7 +16,7 @@ import { canEditCategory } from '@glimmung/back/src/utils/can'
 export const EditCategoryPage = withPageWrapper({
   authorizedOnly: true,
   useQuery: () => {
-    const { categoryId } = useParams() as EditCategoryRouteParams
+    const { categoryId } = getCategoryRoute.useParams()
     return trpc.getCategory.useQuery({
       categoryId,
     })

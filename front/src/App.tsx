@@ -26,22 +26,19 @@ export const App = () => {
         <AppContextProvider>
           <BrowserRouter>
             <Routes>
-              <Route path={routes.getSignOutRoute()} element={<SignOutPage />} />
+              <Route path={routes.getSignOutRoute.definition} element={<SignOutPage />} />
               <Route element={<Layout />}>
-                <Route path={routes.getSignInRoute()} element={<SignInPage />} />
-                <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
-                <Route path={routes.getEditProfileRoute()} element={<EditProfilePage />} />
-                <Route path={routes.getAllCategoriesRoute()} element={<CategoriesPage />} />
-                <Route path={routes.getCategoryRoute(routes.categoryRouteParams)} element={<CategoryPage />} />
-                <Route
-                  path={routes.getEditCategoryRoute(routes.editCategoryRouteParams)}
-                  element={<EditCategoryPage />}
-                />
-                <Route path={routes.getNewCategoryRoute()} element={<NewCategoryPage />} />
-                <Route path={routes.getChannelsRoute()} element={<ChannelsPage />} />
-                <Route path={routes.getChannelRoute(routes.channelRouteParams)} element={<ChannelPage />} />
-                <Route path={routes.getEditChannelRoute(routes.editChannelRouteParams)} element={<EditChannelPage />} />
-                <Route path={routes.getNewChannelRoute()} element={<NewChannelPage />} />
+                <Route path={routes.getSignInRoute.definition} element={<SignInPage />} />
+                <Route path={routes.getSignUpRoute.definition} element={<SignUpPage />} />
+                <Route path={routes.getEditProfileRoute.definition} element={<EditProfilePage />} />
+                <Route path={routes.getAllCategoriesRoute.definition} element={<CategoriesPage />} />
+                <Route path={routes.getCategoryRoute.definition} element={<CategoryPage />} />
+                <Route path={routes.getEditCategoryRoute.definition} element={<EditCategoryPage />} />
+                <Route path={routes.getNewCategoryRoute.definition} element={<NewCategoryPage />} />
+                <Route path={routes.getChannelsRoute.definition} element={<ChannelsPage />} />
+                <Route path={routes.getChannelRoute.definition} element={<ChannelPage />} />
+                <Route path={routes.getEditChannelRoute.definition} element={<EditChannelPage />} />
+                <Route path={routes.getNewChannelRoute.definition} element={<NewChannelPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Routes>

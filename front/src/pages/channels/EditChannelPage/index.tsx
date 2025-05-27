@@ -1,12 +1,12 @@
 import pick from 'lodash/pick'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'
 import { FormItems } from '../../../components/FormItems'
 import { Input } from '../../../components/Input'
 import { Segment } from '../../../components/Segment'
 import { Textarea } from '../../../components/Textarea'
-import { type EditChannelRouteParams, getChannelRoute } from '../../../lib/routes'
+import { getChannelRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
@@ -15,7 +15,7 @@ import { zUpdateChannelTrpcInput } from '@glimmung/back/src/router/channels/upda
 export const EditChannelPage = withPageWrapper({
   authorizedOnly: true,
   useQuery: () => {
-    const { channelId } = useParams() as EditChannelRouteParams
+    const { channelId } = getChannelRoute.useParams()
     return trpc.getChannel.useQuery({
       channelId,
     })

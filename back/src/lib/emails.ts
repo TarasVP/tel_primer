@@ -66,7 +66,7 @@ export const sendWelcomeEmail = async ({ user }: { user: Pick<User, 'nick' | 'em
     templateName: 'welcome',
     templateVariables: {
       userNick: user.nick,
-      addChannelUrl: `${env.FRONTEND_URL}${getNewChannelRoute()}`,
+      addIdeaUrl: `${getNewChannelRoute({ abs: true })}`,
     },
   })
 }
