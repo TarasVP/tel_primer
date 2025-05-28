@@ -26,6 +26,7 @@
     "@trpc/server": "^10.45.2",
     "axios": "^1.9.0",
     "cors": "^2.8.5",
+    "cron": "^4.3.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "fast-glob": "^3.3.3",
@@ -40,9 +41,10 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@glimmung/front": "workspace:*",
     "@eslint/js": "^9.21.0",
+    "@glimmung/front": "workspace:*",
     "@types/cors": "^2.8.17",
+    "@types/cron": "^2.4.3",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/lodash": "^4.17.16",
