@@ -38,6 +38,7 @@
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@glimmung/back": "workspace:*",
+    "@glimmung/shared": "workspace:*",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.16",
     "@types/react": "^19.0.10",

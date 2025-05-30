@@ -43,6 +43,7 @@
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@glimmung/front": "workspace:*",
+    "@glimmung/shared": "workspace:*",
     "@types/cors": "^2.8.17",
     "@types/cron": "^2.4.3",
     "@types/express": "^5.0.0",
