@@ -1,12 +1,12 @@
 import { promises as fs } from 'fs'
 import path from 'path'
-import { type Category, type User } from '@prisma/client'
+import { type Category, type User, type Channel } from '@prisma/client'
 import fg from 'fast-glob'
 import _ from 'lodash'
 import { env } from './env'
 import Handlebars from 'handlebars'
 import { sendEmailThroughRusender } from './rusender'
-import { getNewChannelRoute } from '@glimmung/front/src/lib/routes'
+import { getChannelRoute, getNewChannelRoute } from '@glimmung/front/src/lib/routes'
 
 const getHbrTemplates = _.memoize(async () => {
   const htmlPathsPattern = path.resolve(__dirname, '../emails/dist/**/*.html').replace(/\\/g, '/')
@@ -84,6 +84,26 @@ export const sendCategoryBlockedEmail = async ({
     templateName: 'categoryBlocked',
     templateVariables: {
       categoryName: category.name,
+    },
+  })
+}
+
+export const sendMostLikedChannelsEmail = async ({
+  user,
+  channels,
+}: {
+  user: Pick<User, 'email'>
+  channels: Array<Pick<Channel, 'id' | 'name'>>
+}) => {
+  return await sendEmail({
+    to: user.email,
+    subject: 'Most Liked Channels!',
+    templateName: 'mostLikedChannels',
+    templateVariables: {
+      channels: channels.map((channel) => ({
+        name: channel.name,
+        url: getChannelRoute({ abs: true, channelId: channel.id }),
+      })),
     },
   })
 }
