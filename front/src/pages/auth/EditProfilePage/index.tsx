@@ -9,7 +9,7 @@ import { withPageWrapper } from '../../../lib/pageWrapper'
 import { trpc } from '../../../lib/trpc'
 import { type TrpcRouterOutput } from '@glimmung/back/src/router'
 import { zUpdatePasswordTrpcInput } from '@glimmung/back/src/router/auth/updatePassword/input'
-import { z } from 'zod'
+import { zPasswordsMustBeTheSame, zStringRequired } from '@glimmung/shared/src/zod'
 
 const General = ({ me }: { me: NonNullable<TrpcRouterOutput['getMe']['me']> }) => {
   const trpcUtils = trpc.useUtils()
@@ -50,17 +50,9 @@ const Password = () => {
     },
     validationSchema: zUpdatePasswordTrpcInput
       .extend({
-        newPasswordAgain: z.string().min(1),
+        newPasswordAgain: zStringRequired,
       })
-      .superRefine((val, ctx) => {
-        if (val.newPassword !== val.newPasswordAgain) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: 'Passwords must be the same',
-            path: ['newPasswordAgain'],
-          })
-        }
-      }),
+      .superRefine(zPasswordsMustBeTheSame('newPassword', 'newPasswordAgain')),
     onSubmit: async ({ newPassword, oldPassword }) => {
       await updatePassword.mutateAsync({ newPassword, oldPassword })
     },

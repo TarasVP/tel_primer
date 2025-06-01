@@ -1,6 +1,6 @@
-import { z } from 'zod'
+import { zStringRequired } from '@glimmung/shared/src/zod'
 import { zCreateChannelTrpcInput } from '../createChannel/input'
 
 export const zUpdateChannelTrpcInput = zCreateChannelTrpcInput.extend({
-  channelId: z.string().min(1),
+  channelId: zStringRequired,
 })
