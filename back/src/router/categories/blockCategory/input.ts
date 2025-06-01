@@ -1,5 +1,6 @@
+import { zStringRequired } from '@glimmung/shared/src/zod'
 import { z } from 'zod'
 
 export const zBlockCategoryTrpcInput = z.object({
-  categoryId: z.string().min(1),
+  categoryId: zStringRequired,
 })
