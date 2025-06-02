@@ -7,6 +7,7 @@ import { env } from './env'
 import Handlebars from 'handlebars'
 import { sendEmailThroughRusender } from './rusender'
 import { getChannelRoute, getNewChannelRoute } from '@glimmung/front/src/lib/routes'
+import { logger } from './logger'
 
 const getHbrTemplates = _.memoize(async () => {
   const htmlPathsPattern = path.resolve(__dirname, '../emails/dist/**/*.html').replace(/\\/g, '/')
@@ -45,7 +46,7 @@ const sendEmail = async ({
     }
     const html = await getEmailHtml(templateName, fullTemplateVaraibles)
     const { loggableResponse } = await sendEmailThroughRusender({ to, html, subject })
-    console.info('sendEmail', {
+    logger.info('sendEmail', {
       to,
       subject,
       templateName,
@@ -54,7 +55,7 @@ const sendEmail = async ({
     })
     return { ok: true }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
     return { ok: false }
   }
 }

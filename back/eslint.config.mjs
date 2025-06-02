@@ -20,7 +20,7 @@ export default [
     rules: {
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
-      'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
+      'no-console': ['error'],
       'no-irregular-whitespace': [
         'error',
         {
