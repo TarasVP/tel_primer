@@ -10,6 +10,7 @@ import { SignUpPage } from './pages/auth/SignUpPage'
 import { SignInPage } from './pages/auth/SignInPage'
 import { SignOutPage } from './pages/auth/SignOutPage'
 import { EditCategoryPage } from './pages/categories/EditCategoryPage'
+import { NotAuthRouteTracker } from './components/NotAuthRouteTracker'
 import { AppContextProvider } from './lib/ctx'
 import { NotFoundPage } from './pages/other/NotFoundPage'
 import { EditProfilePage } from './pages/auth/EditProfilePage'
@@ -25,6 +26,7 @@ export const App = () => {
       <TrpcProvider>
         <AppContextProvider>
           <BrowserRouter>
+            <NotAuthRouteTracker />
             <Routes>
               <Route path={routes.getSignOutRoute.definition} element={<SignOutPage />} />
               <Route element={<Layout />}>
