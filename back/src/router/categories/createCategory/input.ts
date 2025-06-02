@@ -8,5 +8,5 @@ export const zCreateCategoryTrpcInput = z.object({
     .min(1)
     .regex(/^[0-9]+$/, 'Id may contain only numbers'),
   description: z.string().min(1),
-  text: zStringMin(100),
+  text: zStringMin(30),
 })
