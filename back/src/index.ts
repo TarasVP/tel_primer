@@ -23,10 +23,10 @@ void (async () => {
     applyCron(ctx)
 
     expressApp.listen(env.PORT, () => {
-      logger.info(`Listen ah http://localhost:${env.PORT}/trpc/getCategories`)
+      logger.info('express', `Listen ah http://localhost:${env.PORT}/trpc/getCategories`)
     })
   } catch (error) {
-    logger.error(error)
+    logger.error('app', error)
     void ctx?.stop()
   }
 })()

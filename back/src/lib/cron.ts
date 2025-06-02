@@ -7,7 +7,9 @@ export const applyCron = (ctx: AppContext) => {
   new CronJob(
     '*/5 * * * *', // At every 5th minute.
     () => {
-      notifyAboutMostLikedChannels(ctx).catch(logger.error)
+      notifyAboutMostLikedChannels(ctx).catch((error) => {
+        logger.error('cron', error)
+      })
     },
     null, // onComplete
     true // start right now
