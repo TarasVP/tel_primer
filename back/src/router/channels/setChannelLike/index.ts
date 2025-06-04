@@ -1,7 +1,7 @@
-import { trpc } from '../../../lib/trpc'
+import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zSetChannelLikeTrpcInput } from './input'
 
-export const setChannelLikeTrpcRoute = trpc.procedure
+export const setChannelLikeTrpcRoute = trpcLoggedProcedure
   .input(zSetChannelLikeTrpcInput)
   .mutation(async ({ ctx, input }) => {
     const { channelId, isLikedByMe } = input

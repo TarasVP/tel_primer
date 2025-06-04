@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc'
+import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zChannelInput } from './input'
 import _ from 'lodash'
 
-export const getChannelTrpcRoute = trpc.procedure.input(zChannelInput).query(async ({ ctx, input }) => {
+export const getChannelTrpcRoute = trpcLoggedProcedure.input(zChannelInput).query(async ({ ctx, input }) => {
   const rawChannel = await ctx.prisma.channel.findUnique({
     where: {
       id: input.channelId,

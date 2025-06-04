@@ -1,7 +1,7 @@
-import { trpc } from '../../../lib/trpc'
+import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zSubCategoryInput } from './input'
 
-export const getCategoryTrpcRoute = trpc.procedure.input(zSubCategoryInput).query(async ({ ctx, input }) => {
+export const getCategoryTrpcRoute = trpcLoggedProcedure.input(zSubCategoryInput).query(async ({ ctx, input }) => {
   const category = await ctx.prisma.category.findUnique({
     where: {
       id: input.categoryId,

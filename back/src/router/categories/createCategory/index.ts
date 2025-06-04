@@ -1,7 +1,7 @@
-import { trpc } from '../../../lib/trpc'
+import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zCreateCategoryTrpcInput } from './input'
 
-export const createCategoryTrpcRoute = trpc.procedure
+export const createCategoryTrpcRoute = trpcLoggedProcedure
   .input(zCreateCategoryTrpcInput)
   .mutation(async ({ input, ctx }) => {
     if (!ctx.me) {

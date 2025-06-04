@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc'
+import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zGetChannelsTrpcInput } from './input'
 import _ from 'lodash'
 
-export const getChannelsTrpcRoute = trpc.procedure.input(zGetChannelsTrpcInput).query(async ({ ctx, input }) => {
+export const getChannelsTrpcRoute = trpcLoggedProcedure.input(zGetChannelsTrpcInput).query(async ({ ctx, input }) => {
   // const normalizedSearch = input.search ? input.search.trim().replace(/[\s\n\t]/g, '_') : undefined
   const normalizedSearch = input.search ? input.search.trim().replace(/[\s\n\t]/g, ' & ') : undefined
   const rawChannels = await ctx.prisma.channel.findMany({
