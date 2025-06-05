@@ -15,6 +15,7 @@ const zEnv = z.object({
   RUSENDER_API_KEY: zEnvNonemptyTrimmedRequiredOnNotLocal,
   FROM_EMAIL_NAME: zEnvNonemptyTrimmed,
   FROM_EMAIL_ADDRESS: zEnvNonemptyTrimmed,
+  DEBUG: zEnvNonemptyTrimmed,
 })
 
 export const env = zEnv.parse(process.env)
