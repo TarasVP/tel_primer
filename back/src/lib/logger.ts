@@ -7,6 +7,7 @@ import winston from 'winston'
 import * as yaml from 'yaml'
 import { env } from './env'
 import debug from 'debug'
+import { deepMap } from '../utils/deepMap'
 
 export const winstonLogger = winston.createLogger({
   level: 'debug',
@@ -59,14 +60,27 @@ export const winstonLogger = winston.createLogger({
   ],
 })
 
+type Meta = Record<string, any> | undefined
+
+const prepareMeta = (meta: Meta): Meta => {
+  return deepMap(meta, ({ key, value }) => {
+    if (
+      ['email', 'password', 'passwordAgain', 'newPassword', 'oldPassword', 'token', 'text', 'description'].includes(key)
+    ) {
+      return '🙈'
+    }
+    return value
+  })
+}
+
 export const logger = {
-  info: (logType: string, message: string, meta?: Record<string, any>) => {
+  info: (logType: string, message: string, meta?: Meta) => {
     if (!debug.enabled(`glimmung:${logType}`)) {
       return
     }
-    winstonLogger.info(message, { logType, ...meta })
+    winstonLogger.info(message, { logType, ...prepareMeta(meta) })
   },
-  error: (logType: string, error: any, meta?: Record<string, any>) => {
+  error: (logType: string, error: any, meta?: Meta) => {
     if (!debug.enabled(`glimmung:${logType}`)) {
       return
     }
@@ -75,7 +89,7 @@ export const logger = {
       logType,
       error,
       errorStack: serializedError.stack,
-      ...meta,
+      ...prepareMeta(meta),
     })
   },
 }
