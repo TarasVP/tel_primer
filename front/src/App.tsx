@@ -5,6 +5,7 @@ import { CategoryPage } from './pages/categories/CategoryPage/index'
 import * as routes from './lib/routes'
 import { Layout } from './components/Layout'
 import './styles/global.scss'
+import { SentryUser } from './lib/sentry'
 import { NewCategoryPage } from './pages/categories/NewCategoryPage'
 import { SignUpPage } from './pages/auth/SignUpPage'
 import { SignInPage } from './pages/auth/SignInPage'
@@ -26,6 +27,7 @@ export const App = () => {
       <TrpcProvider>
         <AppContextProvider>
           <BrowserRouter>
+            <SentryUser />
             <NotAuthRouteTracker />
             <Routes>
               <Route path={routes.getSignOutRoute.definition} element={<SignOutPage />} />
