@@ -3,16 +3,16 @@ import { useEffect } from 'react'
 import { useMe } from './ctx'
 import { env } from './env'
 
-if (env.VITE_WEBAPP_SENTRY_DSN) {
+if (env.VITE_FRONTEND_SENTRY_DSN) {
   Sentry.init({
-    dsn: env.VITE_WEBAPP_SENTRY_DSN,
+    dsn: env.VITE_FRONTEND_SENTRY_DSN,
     environment: env.HOST_ENV,
     normalizeDepth: 10,
   })
 }
 
 export const sentryCaptureException = (error: Error) => {
-  if (env.VITE_WEBAPP_SENTRY_DSN) {
+  if (env.VITE_FRONTEND_SENTRY_DSN) {
     Sentry.captureException(error)
   }
 }
@@ -20,7 +20,7 @@ export const sentryCaptureException = (error: Error) => {
 export const SentryUser = () => {
   const me = useMe()
   useEffect(() => {
-    if (env.VITE_WEBAPP_SENTRY_DSN) {
+    if (env.VITE_FRONTEND_SENTRY_DSN) {
       if (me) {
         Sentry.setUser({
           email: me.email,

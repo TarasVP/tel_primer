@@ -5,8 +5,8 @@ export const zEnv = z.object({
   NODE_ENV: z.enum(['development', 'production']),
   HOST_ENV: zEnvHost,
   VITE_BACKEND_TRPC_URL: zEnvNonemptyTrimmed,
-  VITE_WEBAPP_URL: zEnvNonemptyTrimmed,
-  VITE_WEBAPP_SENTRY_DSN: zEnvNonemptyTrimmedRequiredOnNotLocal,
+  VITE_FRONTEND_URL: zEnvNonemptyTrimmed,
+  VITE_FRONTEND_SENTRY_DSN: zEnvNonemptyTrimmedRequiredOnNotLocal,
 })
 
 export const env = zEnv.parse(process.env)
