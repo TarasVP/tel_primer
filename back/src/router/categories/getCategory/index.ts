@@ -1,3 +1,4 @@
+import { ExpectedError } from '../../../lib/errors'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zSubCategoryInput } from './input'
 
@@ -17,7 +18,7 @@ export const getCategoryTrpcRoute = trpcLoggedProcedure.input(zSubCategoryInput)
     },
   })
   if (category?.blockedAt) {
-    throw new Error('Category is blocked by administrator')
+    throw new ExpectedError('Category is blocked by administrator')
   }
 
   return { category }

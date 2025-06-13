@@ -1,3 +1,4 @@
+import { ExpectedError } from '../../../lib/errors'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zCreateChannelTrpcInput } from './input'
 
@@ -5,7 +6,7 @@ export const createChannelTrpcRoute = trpcLoggedProcedure
   .input(zCreateChannelTrpcInput)
   .mutation(async ({ input, ctx }) => {
     if (!ctx.me) {
-      throw Error('Not authenticated')
+      throw new Error('Not authenticated')
     }
     const exChannel = await ctx.prisma.channel.findUnique({
       where: {
@@ -13,7 +14,7 @@ export const createChannelTrpcRoute = trpcLoggedProcedure
       },
     })
     if (exChannel) {
-      throw Error('Channel with this name already exists')
+      throw new ExpectedError('Channel with this name already exists')
     }
     await ctx.prisma.channel.create({
       data: {

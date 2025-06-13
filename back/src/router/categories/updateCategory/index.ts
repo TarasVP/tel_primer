@@ -1,3 +1,4 @@
+import { ExpectedError } from '../../../lib/errors'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zUpdateCtegoryTrpcInput } from './input'
 
@@ -26,7 +27,7 @@ export const updateCategoryTrpcRoute = trpcLoggedProcedure
         },
       })
       if (exCategory) {
-        throw new Error('Category with this nick already exists')
+        throw new ExpectedError('Category with this nick already exists')
       }
     }
     await ctx.prisma.category.update({
