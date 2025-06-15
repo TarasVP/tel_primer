@@ -6,6 +6,7 @@ import { env } from './env'
 if (env.VITE_FRONTEND_SENTRY_DSN) {
   Sentry.init({
     dsn: env.VITE_FRONTEND_SENTRY_DSN,
+    release: env.SOURCE_VERSION,
     environment: env.HOST_ENV,
     normalizeDepth: 10,
   })
