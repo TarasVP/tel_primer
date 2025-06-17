@@ -1,4 +1,5 @@
 import { EOL } from 'os'
+import { TRPCError } from '@trpc/server'
 import _ from 'lodash'
 import pc from 'picocolors'
 import { serializeError } from 'serialize-error'
@@ -8,6 +9,8 @@ import * as yaml from 'yaml'
 import { env } from './env'
 import debug from 'debug'
 import { deepMap } from '../utils/deepMap'
+import { ExpectedError } from './errors'
+import { sentryCaptureException } from './sentry'
 
 export const winstonLogger = winston.createLogger({
   level: 'debug',
@@ -60,9 +63,9 @@ export const winstonLogger = winston.createLogger({
   ],
 })
 
-type Meta = Record<string, any> | undefined
+export type LoggerMetaData = Record<string, any> | undefined
 
-const prepareMeta = (meta: Meta): Meta => {
+const prepareMeta = (meta: LoggerMetaData): LoggerMetaData => {
   return deepMap(meta, ({ key, value }) => {
     if (
       ['email', 'password', 'passwordAgain', 'newPassword', 'oldPassword', 'token', 'text', 'description'].includes(key)
@@ -74,13 +77,20 @@ const prepareMeta = (meta: Meta): Meta => {
 }
 
 export const logger = {
-  info: (logType: string, message: string, meta?: Meta) => {
+  info: (logType: string, message: string, meta?: LoggerMetaData) => {
     if (!debug.enabled(`glimmung:${logType}`)) {
       return
     }
     winstonLogger.info(message, { logType, ...prepareMeta(meta) })
   },
-  error: (logType: string, error: any, meta?: Meta) => {
+  error: (logType: string, error: any, meta?: LoggerMetaData) => {
+    const isNativeExpectedError = error instanceof ExpectedError
+    const isTrpcExpectedError = error instanceof TRPCError && error.cause instanceof ExpectedError
+    const prettifiedMetaData = prepareMeta(meta)
+    if (!isNativeExpectedError && !isTrpcExpectedError) {
+      sentryCaptureException(error, prettifiedMetaData)
+    }
+
     if (!debug.enabled(`glimmung:${logType}`)) {
       return
     }
@@ -89,7 +99,7 @@ export const logger = {
       logType,
       error,
       errorStack: serializedError.stack,
-      ...prepareMeta(meta),
+      ...prettifiedMetaData,
     })
   },
 }
