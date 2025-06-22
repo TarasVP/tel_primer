@@ -34,6 +34,7 @@ void (async () => {
     expressApp.listen(env.PORT, () => {
       logger.info('express', `Listen ah http://localhost:${env.PORT}/trpc/getCategories`)
     })
+    throw new Error('error with source map')
   } catch (error) {
     logger.error('app', error)
     void ctx?.stop()

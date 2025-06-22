@@ -6,7 +6,8 @@
   "compilerOptions": {
     "plugins": [{ "transform": "typescript-transform-paths" }],
     "paths": {
-      "@glimmung/front/*": ["../front/*"]
+      "@glimmung/front/*": ["../front/*"],
+      "@glimmung/shared/*": ["../shared/*"]
     },
     "outDir": "./dist",
     "allowJs": true,
@@ -19,6 +20,7 @@
     "skipLibCheck": true,
     "strict": true,
     "sourceMap": true,
+    "sourceRoot": "/",
     "resolveJsonModule": true,
     "inlineSources": true,
     "isolatedModules": false,
