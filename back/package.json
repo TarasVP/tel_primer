@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "ts-node-dev --watch ./src/emails/dist,./.env --rs --exit-child ./src/index.ts",
     "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json",
-    "sentry-release": "dotenv sentry-cli releases new %SOURCE_VERSION% --finalize --org glimmung-og --project 4509538794995712 --auth-token %SENTRY_AUTH_TOKEN%",
-    "sentry-sourcemaps": "dotenv -- bash -c 'sentry-cli releases files $SOURCE_VERSION upload-sourcemaps ./dist --org glimmung-og --project node'",
+    "sentry-release": "dotenv sentry-cli releases new --finalize -o 4509538791849984 -p 4509538794995712 --auth-token %SENTRY_AUTH_TOKEN%  %SOURCE_VERSION%",
+    "sentry-sourcemaps": "dotenv sentry-cli releases files %SOURCE_VERSION% upload-sourcemaps ./dist -o glimmung-og -p backend'",
     "sentry": "pnpm sentry-release && pnpm sentry-sourcemaps",
     "start": "node ./dist/back/src/index.js",
     "pmd": "prisma migrate dev",
