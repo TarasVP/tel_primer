@@ -2,15 +2,19 @@ import globals from 'globals'
 import pluginJs from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import pluginReact from 'eslint-plugin-react'
+import jest from 'eslint-plugin-jest'
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: ['dist/**', 'node_modules/**'],
+    ignores: ['dist/**', 'node_modules/**', '*.config.js'],
   },
 
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    plugins: {
+      jest,
+    },
   },
 
   { languageOptions: { globals: globals.browser } },
@@ -19,6 +23,7 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     rules: {
+      'jest/no-focused-tests': 'error',
       'react/react-in-jsx-scope': 'off',
       'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
       'no-irregular-whitespace': [

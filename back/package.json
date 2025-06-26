@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "ts-node-dev --watch ./src/emails/dist,./.env --rs --exit-child ./src/index.ts",
+    "test": "jest",
     "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json",
     "sentry-release": "dotenv sentry-cli releases new --finalize -o 4509538791849984 -p 4509538794995712 --auth-token %SENTRY_AUTH_TOKEN%  %SOURCE_VERSION%",
     "sentry-sourcemaps": "dotenv sentry-cli releases files %SOURCE_VERSION% upload-sourcemaps ./dist -o glimmung-og -p backend'",

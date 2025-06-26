@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "test": "jest",
     "build": "tsc -b && vite build",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts,.tsx .",
     "stylelint": "stylelint --cache --cache-location ./node_modules/.cache/.stylelintcache \"src/**/*.scss\"",
@@ -46,6 +47,7 @@
     "@sentry/vite-plugin": "^3.5.0",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.16",
+    "@types/node": "20.3.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-infinite-scroller": "^1.2.5",
