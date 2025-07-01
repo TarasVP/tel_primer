@@ -1,11 +1,10 @@
-import { type Channel } from '@prisma/client'
+import { Prisma, type Channel } from '@prisma/client'
 import { type AppContext } from '../lib/ctx'
 import { sendMostLikedChannelsEmail } from '../lib/emails'
 
-export const notifyAboutMostLikedChannels = async (ctx: AppContext) => {
-  const mostLikedChannels = await ctx.prisma.$queryRaw<
-    Array<Pick<Channel, 'id' | 'name'> & { thisMonthLikesCount: number }>
-  >`
+export const getMostLikedChannels = async (ctx: AppContext, limit: number = 10, now?: Date) => {
+  const sqlNow = now ? Prisma.sql`${now.toISOString()}::timestamp` : Prisma.sql`now()`
+  return await ctx.prisma.$queryRaw<Array<Pick<Channel, 'id' | 'name'> & { thisMonthLikesCount: number }>>`
     select 
       channels.id,
       channels.name,
@@ -16,7 +15,7 @@ export const notifyAboutMostLikedChannels = async (ctx: AppContext) => {
       "ChannelLike" AS likes
     on
       channels."id" = likes."channelId"
-      and  likes."createdAt" + INTERVAL '1 month' > NOW()
+      and  likes."createdAt" + INTERVAL '1 month' > ${sqlNow}
     group by 
       channels.id,
       channels.name
@@ -24,8 +23,12 @@ export const notifyAboutMostLikedChannels = async (ctx: AppContext) => {
       COUNT(likes.id) > 0
     order by 
       likesCount desc
-    limit 3
+    limit ${limit}
   `
+}
+
+export const notifyAboutMostLikedChannels = async (ctx: AppContext) => {
+  const mostLikedChannels = await getMostLikedChannels(ctx)
   if (!mostLikedChannels.length) {
     return
   }
