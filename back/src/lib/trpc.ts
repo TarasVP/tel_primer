@@ -35,6 +35,7 @@ const trpc = initTRPC.context<TrpcContext>().create({
   },
 })
 
+export const createCallerFactory = trpc.createCallerFactory
 export const createTrpcRouter = trpc.router
 
 export const trpcLoggedProcedure = trpc.procedure.use(

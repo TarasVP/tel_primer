@@ -1,7 +1,7 @@
 import { type Channel, type User } from '@prisma/client'
 import _ from 'lodash'
 import { createAppContext } from '../lib/ctx'
-import { getTrpcContext } from '../lib/trpc'
+import { getTrpcContext, createCallerFactory } from '../lib/trpc'
 import { trpcRouter } from '../router'
 import { deepMap } from '../utils/deepMap'
 import { getPasswordHash } from '../utils/getPasswordHash'
@@ -19,7 +19,8 @@ beforeEach(async () => {
 
 export const getTrpcCaller = (user?: User) => {
   const req = { user } as ExpressRequest
-  return trpcRouter.createCaller(getTrpcContext({ appContext, req }))
+  const createCaller = createCallerFactory(trpcRouter)
+  return createCaller(getTrpcContext({ appContext, req }))
 }
 
 export const withoutNoize = (input: any): any => {
