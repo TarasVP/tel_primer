@@ -10,6 +10,13 @@ export default [
         project: "./tsconfig.json",
       },
     },
+    settings: {
+      "import/resolver": {
+        node: {
+          extensions: [".js", ".ts", ".tsx"],
+        },
+      },
+    },
   },
   {
     rules: {
