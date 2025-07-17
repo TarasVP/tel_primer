@@ -5,6 +5,7 @@
   "scripts": {
     "b": "pnpm --filter @glimmung/back",
     "f": "pnpm --filter @glimmung/front",
+    "sh": "pnpm --filter @glimmung/shared",
     "dev": "pnpm -r --parallel dev",
     "test": "pnpm -r test",
     "types": "concurrently \"pnpm b types\" \"pnpm f types\"",
