@@ -13,6 +13,16 @@ const makeRequestToRusender = async ({
   originalResponse?: AxiosResponse
   loggableResponse: Pick<AxiosResponse, 'status' | 'statusText' | 'data'>
 }> => {
+  if (env.NODE_ENV === 'test') {
+    return {
+      loggableResponse: {
+        status: 200,
+        statusText: 'OK',
+        data: { message: 'test mode' },
+      },
+    }
+  }
+
   if (!env.RUSENDER_API_KEY) {
     return {
       loggableResponse: {
