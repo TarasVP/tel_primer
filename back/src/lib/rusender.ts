@@ -1,7 +1,7 @@
+import { randomUUID } from 'crypto'
 import axios, { type AxiosResponse } from 'axios'
 import _ from 'lodash'
 import { env } from './env'
-import { randomUUID } from 'crypto'
 
 const makeRequestToRusender = async ({
   path,

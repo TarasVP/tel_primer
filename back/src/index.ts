@@ -1,15 +1,17 @@
-import { env } from './lib/env'
-import express from 'express'
-import { trpcRouter } from './router/index'
 import cors from 'cors'
-import { applyTrpcToExpressApp } from './lib/trpc'
-import { type AppContext, createAppContext } from './lib/ctx'
-import { applyPassportToExpressApp } from './lib/passport'
-import { presetDb } from './scripts/presetDb'
+import express from 'express'
 import { applyCron } from './lib/cron'
+import { type AppContext, createAppContext } from './lib/ctx'
+import { env } from './lib/env'
 import { logger } from './lib/logger'
+import { applyPassportToExpressApp } from './lib/passport'
+import { initSentry } from './lib/sentry'
+import { applyTrpcToExpressApp } from './lib/trpc'
+import { trpcRouter } from './router/index'
+import { presetDb } from './scripts/presetDb'
 
 void (async () => {
+  initSentry()
   let ctx: AppContext | null = null
   try {
     ctx = createAppContext()

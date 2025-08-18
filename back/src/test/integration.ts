@@ -1,12 +1,15 @@
+import '../lib/sentry.mock'
+import '../lib/emails/utils.mock'
+import '../lib/rusender.mock'
 import { type Channel, type User } from '@prisma/client'
 import _ from 'lodash'
 import { createAppContext } from '../lib/ctx'
+import { env } from '../lib/env'
 import { getTrpcContext, createCallerFactory } from '../lib/trpc'
 import { trpcRouter } from '../router'
 import { deepMap } from '../utils/deepMap'
 import { getPasswordHash } from '../utils/getPasswordHash'
 import { type ExpressRequest } from '../utils/types'
-import { env } from '../lib/env'
 
 if (env.NODE_ENV !== 'test') {
   throw new Error('Run integration tests only with NODE_ENV=test')
@@ -32,7 +35,7 @@ export const withoutNoize = (input: any): any => {
   return deepMap(input, ({ value }) => {
     if (_.isObject(value) && !_.isArray(value)) {
       return _.entries(value).reduce((acc, [objectKey, objectValue]: [string, any]) => {
-        if ([/^id$/, /Id$/, /At$/].some((regex) => regex.test(objectKey))) {
+        if ([/^id$/, /Id$/, /At$/, /^url$/].some((regex) => regex.test(objectKey))) {
           return acc
         }
         return {

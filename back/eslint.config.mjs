@@ -1,8 +1,8 @@
-import globals from 'globals'
 import pluginJs from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import jest from 'eslint-plugin-jest'
 import importPlugin from 'eslint-plugin-import'
+import jest from 'eslint-plugin-jest'
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -56,11 +56,29 @@ export default [
         {
           zones: [
             {
-              target: './src/**/!(*.test.{ts,tsx})', // Исключаем тестовые файлы
+              target: './src/**/!(*.integration.test.ts)', // Исключаем тестовые файлы
               from: './src/test',
               message: 'Test imports are only allowed in *.test.ts files',
             },
           ],
+        },
+      ],
+      'import/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
+          pathGroups: [
+            {
+              pattern: '{.,..}/**/test/integration',
+              group: 'builtin',
+              position: 'before',
+            },
+          ],
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: false,
+            orderImportKind: 'asc',
+          },
         },
       ],
     },

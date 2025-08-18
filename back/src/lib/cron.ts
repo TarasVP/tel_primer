@@ -1,13 +1,13 @@
 import { CronJob } from 'cron'
-import { type AppContext } from './ctx'
 import { notifyAboutMostLikedChannels } from '../scripts/notifyAboutMostLikedChannels'
+import { type AppContext } from './ctx'
 import { logger } from './logger'
 
 export const applyCron = (ctx: AppContext) => {
   new CronJob(
     '*/5 * * * *', // At every 5th minute.
     () => {
-      notifyAboutMostLikedChannels(ctx).catch((error) => {
+      notifyAboutMostLikedChannels({ ctx }).catch((error) => {
         logger.error('cron', error)
       })
     },
