@@ -1,6 +1,6 @@
+import { omit } from '@glimmung/shared/src/omit'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zGetChannelsTrpcInput } from './input'
-import _ from 'lodash'
 
 export const getChannelsTrpcRoute = trpcLoggedProcedure.input(zGetChannelsTrpcInput).query(async ({ ctx, input }) => {
   // const normalizedSearch = input.search ? input.search.trim().replace(/[\s\n\t]/g, '_') : undefined
@@ -54,7 +54,7 @@ export const getChannelsTrpcRoute = trpcLoggedProcedure.input(zGetChannelsTrpcIn
   const nextCursor = nextChannel?.serialNumber
   const rawChannelsExceptNext = rawChannels.slice(0, input.limit)
   const channelsExceptNext = rawChannelsExceptNext.map((channel) => ({
-    ..._.omit(channel, ['_count']),
+    ...omit(channel, ['_count']),
     likesCount: channel._count.channelsLikes,
   }))
 

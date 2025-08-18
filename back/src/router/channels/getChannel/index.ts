@@ -1,6 +1,6 @@
+import { omit } from '@glimmung/shared/src/omit'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zChannelInput } from './input'
-import _ from 'lodash'
 
 export const getChannelTrpcRoute = trpcLoggedProcedure.input(zChannelInput).query(async ({ ctx, input }) => {
   const rawChannel = await ctx.prisma.channel.findUnique({
@@ -32,7 +32,7 @@ export const getChannelTrpcRoute = trpcLoggedProcedure.input(zChannelInput).quer
   })
   const isLikedByMe = !!rawChannel?.channelsLikes.length
   const likesCount = rawChannel?._count.channelsLikes || 0
-  const channel = rawChannel && { ..._.omit(rawChannel, ['channelsLikes', '_count']), isLikedByMe, likesCount }
+  const channel = rawChannel && { ...omit(rawChannel, ['channelsLikes', '_count']), isLikedByMe, likesCount }
 
   return { channel }
 })

@@ -1,5 +1,5 @@
 import { zUpdateCtegoryTrpcInput } from '@glimmung/back/src/router/categories/updateCategory/input'
-import pick from 'lodash/pick'
+import { pick } from '@glimmung/shared/src/pick'
 import { useNavigate } from 'react-router-dom'
 import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'

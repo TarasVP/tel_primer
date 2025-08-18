@@ -1,4 +1,4 @@
-import pick from 'lodash/pick'
+import { pick } from '@glimmung/shared/src/pick'
 import { useNavigate } from 'react-router-dom'
 import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'
