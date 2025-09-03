@@ -52,33 +52,24 @@ describe('getMostLikedChannels', () => {
     expect(withoutNoize(await getMostLikedChannels({ ctx: appContext, limit: 2, now }))).toMatchInlineSnapshot(`
 [
   {
+    "likescount": 3n,
     "name": "Channel 1",
-    "nick": "channel1",
-    "thisMonthLikesCount": 3,
   },
   {
+    "likescount": 2n,
     "name": "Channel 2",
-    "nick": "channel2",
-    "thisMonthLikesCount": 2,
   },
 ]
 `)
     expect(withoutNoize(await getMostLikedChannels({ ctx: appContext, limit: 2, now }))).toMatchInlineSnapshot(`
 [
   {
+    "likescount": 3n,
     "name": "Channel 1",
-    "nick": "channel1",
-    "thisMonthLikesCount": 3,
   },
   {
+    "likescount": 2n,
     "name": "Channel 2",
-    "nick": "channel2",
-    "thisMonthLikesCount": 2,
-  },
-  {
-    "name": "Channel 3",
-    "nick": "channel3",
-    "thisMonthLikesCount": 1,
   },
 ]
 `)
@@ -94,83 +85,83 @@ describe('notifyAboutMostLikedChannels', () => {
     const calls = jest.mocked(sendEmail).mock.calls
     const prettifiedCallProps = calls.map(([props]) => withoutNoize(props))
     expect(prettifiedCallProps).toMatchInlineSnapshot(`
-      [
+[
+  {
+    "subject": "Most Liked Channels!",
+    "templateName": "mostLikedChannels",
+    "templateVariables": {
+      "channels": [
         {
-          "subject": "Most Liked Channels!",
-          "templateName": "mostLikedHannels",
-          "templateVariables": {
-            "channels": [
-              {
-                "name": "Channel 1",
-              },
-              {
-                "name": "Channel 2",
-              },
-            ],
-          },
-          "to": "user1@example.com",
+          "name": "Channel 1",
         },
         {
-          "subject": "Most Liked Channels!",
-          "templateName": "mostLikedChannels",
-          "templateVariables": {
-            "channels": [
-              {
-                "name": "Channel 1",
-              },
-              {
-                "name": "Channel 2",
-              },
-            ],
-          },
-          "to": "user2@example.com",
+          "name": "Channel 2",
+        },
+      ],
+    },
+    "to": "user1@example.com",
+  },
+  {
+    "subject": "Most Liked Channels!",
+    "templateName": "mostLikedChannels",
+    "templateVariables": {
+      "channels": [
+        {
+          "name": "Channel 1",
         },
         {
-          "subject": "Most Liked Channels!",
-          "templateName": "mostLikedChannels",
-          "templateVariables": {
-            "channel": [
-              {
-                "name": "Channel 1",
-              },
-              {
-                "name": "Channel 2",
-              },
-            ],
-          },
-          "to": "user3@example.com",
+          "name": "Channel 2",
+        },
+      ],
+    },
+    "to": "user2@example.com",
+  },
+  {
+    "subject": "Most Liked Channels!",
+    "templateName": "mostLikedChannels",
+    "templateVariables": {
+      "channels": [
+        {
+          "name": "Channel 1",
         },
         {
-          "subject": "Most Liked Channel!",
-          "templateName": "mostLikedChannels",
-          "templateVariables": {
-            "channel": [
-              {
-                "name": "Channel 1",
-              },
-              {
-                "name": "Channel 2",
-              },
-            ],
-          },
-          "to": "user4@example.com",
+          "name": "Channel 2",
+        },
+      ],
+    },
+    "to": "user3@example.com",
+  },
+  {
+    "subject": "Most Liked Channels!",
+    "templateName": "mostLikedChannels",
+    "templateVariables": {
+      "channels": [
+        {
+          "name": "Channel 1",
         },
         {
-          "subject": "Most Liked Channels!",
-          "templateName": "mostLikedChannels",
-          "templateVariables": {
-            "channels": [
-              {
-                "name": "Channel 1",
-              },
-              {
-                "name": "Channel 2",
-              },
-            ],
-          },
-          "to": "user5@example.com",
+          "name": "Channel 2",
         },
-      ]
-    `)
+      ],
+    },
+    "to": "user4@example.com",
+  },
+  {
+    "subject": "Most Liked Channels!",
+    "templateName": "mostLikedChannels",
+    "templateVariables": {
+      "channels": [
+        {
+          "name": "Channel 1",
+        },
+        {
+          "name": "Channel 2",
+        },
+      ],
+    },
+    "to": "user5@example.com",
+  },
+]
+`)
   })
 })
