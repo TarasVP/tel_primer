@@ -47,7 +47,7 @@
     "picocolors": "^1.1.1",
     "react-router-dom": "^7.3.0",
     "serialize-error": "8.1.0",
-    "superjson": "^2.2.2",
+    "superjson": "^1.13.3",
     "triple-beam": "^1.4.1",
     "trpc-playground": "^1.0.4",
     "winston": "^3.17.0",

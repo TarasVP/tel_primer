@@ -111,8 +111,8 @@ importers:
         specifier: 8.1.0
         version: 8.1.0
       superjson:
-        specifier: ^2.2.2
-        version: 2.2.2
+        specifier: ^1.13.3
+        version: 1.13.3
       triple-beam:
         specifier: ^1.4.1
         version: 1.4.1
@@ -268,8 +268,8 @@ importers:
         specifier: ^1.85.1
         version: 1.85.1
       superjson:
-        specifier: ^2.2.2
-        version: 2.2.2
+        specifier: ^1.13.3
+        version: 1.13.3
       usehooks-ts:
         specifier: ^3.1.1
         version: 3.1.1(react@18.3.1)
@@ -5046,9 +5046,9 @@ packages:
     engines: {node: '>=18.12.0'}
     hasBin: true
 
-  superjson@2.2.2:
-    resolution: {integrity: sha512-5JRxVqC8I8NuOUjzBbvVJAKNM8qoVuH0O77h4WInc/qC2q5IreqKxYwgkga3PfA22OayK2ikceb/B26dztPl+Q==}
-    engines: {node: '>=16'}
+  superjson@1.13.3:
+    resolution: {integrity: sha512-mJiVjfd2vokfDxsQPOwJ/PtanO87LhpYY88ubI5dUB1Ab58Txbyje3+jpm+/83R/fevaq/107NNhtYBLuoTrFg==}
+    engines: {node: '>=10'}
 
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
@@ -11190,7 +11190,7 @@ snapshots:
       - supports-color
       - typescript
 
-  superjson@2.2.2:
+  superjson@1.13.3:
     dependencies:
       copy-anything: 3.0.5
 
