@@ -13,6 +13,7 @@ export const getChannelTrpcRoute = trpcLoggedProcedure.input(zChannelInput).quer
           id: true,
           nick: true,
           name: true,
+          avatar: true,
         },
       },
       channelsLikes: {

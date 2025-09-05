@@ -7,6 +7,7 @@ import { LinkButton } from '../../../components/Button'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { type TrpcRouterOutput } from '@glimmung/back/src/router'
 import { Icon } from '../../../components/Icon'
+import { getAvatarUrl } from '@glimmung/shared/src/cloudinary'
 
 const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getChannel']['channel']> }) => {
   const trpcUtils = trpc.useUtils()
@@ -58,8 +59,13 @@ export const ChannelPage = withPageWrapper({
   <Segment title={channel.name} description={channel.description}>
     <div className={css.createdAt}>Created At: {format(channel.createdAt, 'yyyy-MM-dd')}</div>
     <div className={css.author}>
-      Author: {channel.author.nick}
-      {channel.author.name ? ` (${channel.author.name})` : ''}
+      <img className={css.avatar} alt="" src={getAvatarUrl(channel.author.avatar, 'small')} />
+      <div className={css.name}>
+        Author:
+        <br />
+        {channel.author.nick}
+        {channel.author.name ? ` (${channel.author.name})` : ''}
+      </div>
     </div>
     <div className={css.text} dangerouslySetInnerHTML={{ __html: channel.text }} />
     <div className={css.likes}>

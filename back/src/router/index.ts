@@ -16,6 +16,7 @@ import { getChannelTrpcRoute } from './channels/getChannel'
 import { getChannelsTrpcRoute } from './channels/getChannels'
 import { setChannelLikeTrpcRoute } from './channels/setChannelLike'
 import { updateChannelTrpcRoute } from './channels/updateChannel'
+import { prepareCloudinaryUploadTrpcRoute } from './upload/prepareCloudinaryUpload'
 // @endindex
 
 export const trpcRouter = createTrpcRouter({
@@ -35,6 +36,7 @@ export const trpcRouter = createTrpcRouter({
   getChannels: getChannelsTrpcRoute,
   setChannelLike: setChannelLikeTrpcRoute,
   updateChannel: updateChannelTrpcRoute,
+  prepareCloudinaryUpload: prepareCloudinaryUploadTrpcRoute,
   // @endindex
 })
 

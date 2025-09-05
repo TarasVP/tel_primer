@@ -69,7 +69,18 @@ export type LoggerMetaData = Record<string, any> | undefined
 const prepareMeta = (meta: LoggerMetaData): LoggerMetaData => {
   return deepMap(meta, ({ key, value }) => {
     if (
-      ['email', 'password', 'passwordAgain', 'newPassword', 'oldPassword', 'token', 'text', 'description'].includes(key)
+      [
+        'email',
+        'password',
+        'passwordAgain',
+        'newPassword',
+        'oldPassword',
+        'token',
+        'text',
+        'description',
+        'apiKey',
+        'signature',
+      ].includes(key)
     ) {
       return '🙈'
     }
