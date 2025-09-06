@@ -1,16 +1,16 @@
 <mjml>
   <mj-head>
     <mj-title>Your Category Blocked!</mj-title>
-    <mj-include path="./_head.mjml" />
+    <mj-include path="./parts/_head.mjml" />
   </mj-head>
   <mj-body mj-class="body">
-    <mj-include path="./_header.mjml" />
+    <mj-include path="./parts/_header.mjml" />
     <mj-section mj-class="content">
       <mj-column>
         <mj-text mj-class="h1">Your Category blocked!</mj-text>
         <mj-text mj-class="text">Sorry, but we block your category "{{categoryName}}"</mj-text>
       </mj-column>
     </mj-section>
-    <mj-include path="./_footer.mjml" />
+    <mj-include path="./parts/_footer.mjml" />
   </mj-body>
 </mjml>

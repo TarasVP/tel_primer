@@ -17,8 +17,8 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
     "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'",
     "prepare": "pnpm pgc && ts-patch install -s",
-    "build-emails": "rimraf ./src/emails/dist && mkdir .\\src\\emails\\dist && mjml ./src/emails/[!_]*.mjml -o ./src/emails/dist",
-    "watch-emails": "mjml -w ./src/emails/[!_]*.mjml -o ./src/emails/dist",
+    "build-emails": "rimraf ./src/emails/dist && mkdir ./src/emails/dist && mjml ./src/emails/*.mjml -o ./src/emails/dist/",
+    "watch-emails": "mjml -w ./src/emails/*.mjml -o ./src/emails/dist",
     "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/back",
     "build": "pnpm build-ts && pnpm build-emails && pnpm copy-emails"
   },
