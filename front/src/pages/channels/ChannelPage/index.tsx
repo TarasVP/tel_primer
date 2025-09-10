@@ -7,7 +7,8 @@ import { LinkButton } from '../../../components/Button'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { type TrpcRouterOutput } from '@glimmung/back/src/router'
 import { Icon } from '../../../components/Icon'
-import { getAvatarUrl } from '@glimmung/shared/src/cloudinary'
+import { getAvatarUrl, getCloudinaryUploadUrl } from '@glimmung/shared/src/cloudinary'
+import ImageGallery from 'react-image-gallery'
 
 const LikeButton = ({ channel }: { channel: NonNullable<TrpcRouterOutput['getChannel']['channel']> }) => {
   const trpcUtils = trpc.useUtils()
@@ -67,6 +68,18 @@ export const ChannelPage = withPageWrapper({
         {channel.author.name ? ` (${channel.author.name})` : ''}
       </div>
     </div>
+    {!!channel.images.length && (
+      <div className={css.gallery}>
+        <ImageGallery
+          showPlayButton={false}
+          showFullscreenButton={false}
+          items={channel.images.map((image) => ({
+            original: getCloudinaryUploadUrl(image, 'image', 'large'),
+            thumbnail: getCloudinaryUploadUrl(image, 'image', 'preview'),
+          }))}
+        />
+      </div>
+    )}
     <div className={css.text} dangerouslySetInnerHTML={{ __html: channel.text }} />
     <div className={css.likes}>
       Likes: {channel.likesCount}

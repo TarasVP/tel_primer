@@ -7,6 +7,7 @@ import { Button } from '../../../components/Button'
 import { FormItems } from '../../../components/FormItems'
 import { useForm } from '../../../lib/form'
 import { zCreateChannelTrpcInput } from '@glimmung/back/src/router/channels/createChannel/input'
+import { UploadsToCloudinary } from '../../../components/UploadsToCloudinary'
 
 export const NewChannelPage = () => {
   const createChannel = trpc.createChannel.useMutation()
@@ -15,6 +16,7 @@ export const NewChannelPage = () => {
       name: '',
       description: '',
       text: '',
+      images: [],
     },
     validationSchema: zCreateChannelTrpcInput,
     onSubmit: async (values) => {
@@ -35,6 +37,7 @@ export const NewChannelPage = () => {
           <Input name="name" label="Name" formik={formik} />
           <Input name="description" label="Description" formik={formik} maxWidth={500} />
           <Textarea name="text" label="Text" formik={formik} />
+          <UploadsToCloudinary label="Images" name="images" type="image" preset="preview" formik={formik} />
           <Alert {...alertProps} />
           <Button {...buttonProps}>Create channel</Button>
         </FormItems>

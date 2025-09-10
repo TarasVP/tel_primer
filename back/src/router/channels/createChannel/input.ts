@@ -5,4 +5,5 @@ export const zCreateChannelTrpcInput = z.object({
   name: zStringRequired,
   description: zStringRequired,
   text: zStringMin(10),
+  images: z.array(zStringRequired),
 })

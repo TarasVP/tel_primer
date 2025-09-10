@@ -11,6 +11,7 @@ import { trpc } from '../../../lib/trpc'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { zUpdateChannelTrpcInput } from '@glimmung/back/src/router/channels/updateChannel/input'
+import { UploadsToCloudinary } from '../../../components/UploadsToCloudinary'
 
 export const EditChannelPage = withPageWrapper({
   authorizedOnly: true,
@@ -33,7 +34,7 @@ export const EditChannelPage = withPageWrapper({
   const navigate = useNavigate()
   const updateChannel = trpc.updateChannel.useMutation()
   const { formik, buttonProps, alertProps } = useForm({
-    initialValues: pick(channel, ['name', 'id', 'description', 'text']),
+    initialValues: pick(channel, ['name', 'id', 'description', 'text', 'images']),
     validationSchema: zUpdateChannelTrpcInput.omit({ channelId: true }),
     onSubmit: async (values) => {
       await updateChannel.mutateAsync({ channelId: channel.id, ...values })
@@ -48,6 +49,7 @@ export const EditChannelPage = withPageWrapper({
           <Input label="Name" name="name" formik={formik} />
           <Input label="Description" name="description" maxWidth={500} formik={formik} />
           <Textarea label="Text" name="text" formik={formik} />
+          <UploadsToCloudinary label="Images" name="images" type="image" preset="preview" formik={formik} />
           <Alert {...alertProps} />
           <Button {...buttonProps}>Update channel</Button>
         </FormItems>
